@@ -1,0 +1,65 @@
+﻿@page
+@model Meeting_Manager.Pages.Profile.Faculty_ProfileModel
+@{
+}
+
+<div style="position: relative; left: 125px;">
+    <h3>My Faculty Profile</h3>
+</div>
+
+
+
+@*//Sidebar with Options*@
+
+
+<div style="width: 175px; height: 100%; position: fixed; left: 0; top: 0; overflow-y: scroll; background-color: #CBC3E3;">
+    <ul>
+        <li><button style="background-color: white;">My Meetings</button></li>
+        <li><button style="background-color: white;">Profile</button></li>
+        <li><button style="background-color: white;">Queue</button></li>
+
+    </ul>
+</div>
+
+
+
+@*//Chart for Faculty Profile Options*@
+
+<div style="position: relative; left: 125px;">
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Preferred Office Phone Number</th>
+                <th>Office Location</th>
+                <th>Office Hour Days/Times</th>
+                 <th>Command:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Prezzy</td>
+                <td>Alger</td>
+                <td>IamFaculty@dukes.jmu.edu</td>
+                <td>703-123-1234</td>
+                <td>2011 Hartman Hall</td>
+                <td>MoWe: 12:45pm-2:45pm <br /> TuThu: 9:00am-12:00pm
+
+                </td>
+                <td>
+                <button type="button" class="btn btn-outline-primary">Edit</button>
+                </td>
+                
+                
+            </tr>
+
+
+        </tbody>
+
+
+      
+    </table>
+</div>

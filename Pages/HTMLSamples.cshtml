@@ -1,0 +1,282 @@
+﻿@page
+@model Meeting_Manager.Pages.HTMLSamplesModel
+@{
+}
+<h2>Using Bootstrap Stylings</h2>
+
+<br />
+<br />
+<h3>Basic Table</h3>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Second Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Julie</td>
+            <td>Saranson</td>
+            <td>jsara@dukes.jmu.edu</td>
+        </tr>
+        <tr>
+            <td>Bill</td>
+            <td>Brasanki</td>
+            <td>bbras@dukes.jmu.edu</td>
+        </tr>
+        <tr>
+            <td>Aliyah</td>
+            <td>Markinson</td>
+            <td>amark@dukes.jmu.edu</td>
+        </tr>
+    </tbody>
+</table>
+@*---------------------------------------*@
+<br />
+<br />
+<h3>Table with Mouse-Over Hover Color</h3>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Second Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Julie</td>
+            <td>Saranson</td>
+            <td>jsara@dukes.jmu.edu</td>
+        </tr>
+        <tr>
+            <td>Bill</td>
+            <td>Brasanki</td>
+            <td>bbras@dukes.jmu.edu</td>
+        </tr>
+        <tr>
+            <td>Aliyah</td>
+            <td>Markinson</td>
+            <td>amark@dukes.jmu.edu</td>
+        </tr>
+    </tbody>
+</table>
+<h3>Various Types of Buttons</h3>
+
+<button type="button" class="btn">Basic</button>
+<button type="button" class="btn btn-default">Default</button>
+<button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-link">Link</button>
+@*---------------------------------------*@
+<br />
+<br />
+<h3>Using a Button Group</h3>
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-primary">Confirm</button>
+    <button type="button" class="btn btn-outline-secondary">Cancel</button>
+</div>
+@*---------------------------------------*@
+<br />
+<br />
+<h3>Using a Button Group in a Table Column</h3>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Second Name</th>
+            <th>Email</th>
+            <th>Command:</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Julie</td>
+            <td>Saranson</td>
+            <td>jsara@dukes.jmu.edu</td>
+            <td>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-primary">Edit</button>
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Bill</td>
+            <td>Brasanki</td>
+            <td>bbras@dukes.jmu.edu</td>
+            <td>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-primary">Edit</button>
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Aliyah</td>
+            <td>Markinson</td>
+            <td>amark@dukes.jmu.edu</td>
+            <td>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-primary">Edit</button>
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br /><br />
+<h3>A Link Styled as a Button</h3> 
+<a class="btn btn-primary" href="/">Go Back</a>
+@*---------------------------------------*@
+<br />
+<br />
+<h3>Alert Boxes for Action Status</h3>
+<div class="alert alert-success alert-dismissible">
+    Record was successfully added!
+</div>
+<div class="alert alert-danger">
+    Duplicate Record Exists!
+</div>
+@*---------------------------------------*@
+<br />
+<br />
+<h3> Styling an Input Form with Bootstrap</h3>
+<form>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingUsername" placeholder="Username" />
+        <label for="floatingUsername">Username</label>
+        <div class="form-text">Your entered information will be secure!</div>
+    </div>
+    <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+        <label for="floatingPassword">Password</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+@*---------------------------------------*@
+<br />
+<br />
+<h3>Dropdowns and Lists</h3>
+<p>Combobox / "Dropdown List"</p>
+<select class="form-select">
+  <option selected>CIS 454</option>
+  <option value="1">CIS 484</option>
+  <option value="2">CIS 331</option>
+  <option value="3">CIS 330</option>
+</select>
+@*---------------------------------------*@
+<br />
+<br />
+<p>Listbox / Multi-select list</p>
+<select class="form-select" multiple>
+  <option selected>Pizza</option>
+  <option value="1">Salad</option>
+  <option value="2">Cheese/Meat Board</option>
+  <option value="3">Lasagna</option>
+</select>
+@*---------------------------------------*@
+<br />
+<br />
+<h3>Checkboxes</h3>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    Default checkbox
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+  <label class="form-check-label" for="flexCheckChecked">
+    Checked checkbox
+  </label>
+</div>
+@*---------------------------------------*@
+<br />
+<br />
+<h3>Radio Buttons</h3>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <label class="form-check-label" for="flexRadioDefault1">
+    Default radio
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Default checked radio
+  </label>
+</div>
+@*---------------------------------------*@
+<br />
+<br />
+<h3>Images</h3>
+<figure>
+    <img src="~/images/puppy.png" class="figure-img img-fluid rounded" />
+    <figcaption class="figure-caption">Rescue Dogs are the Best!</figcaption>
+</figure>
+@*---------------------------------------*@
+<br />
+<br />
+<h3>Cards</h3>
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+              <img src="~/images/puppy.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Caylee</h5>
+                <p class="card-text">A Rescue Dog, Caylee knows the value of relaxing with Family!</p>
+                <a href="#" class="btn btn-primary">More Details...</a>
+              </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+              <img src="~/images/dukedog.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Duke Dog</h5>
+                <p class="card-text">The Best Collegiate Mascot In The Country!</p>
+                <a href="#" class="btn btn-primary">More Details...</a>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*---------------------------------------*@
+<br />
+<br />
+<h3>Navigation Bar (shrink the browser window horizontally to see how the navbar changes)</h3>
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">HTML Demo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link disabled">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+

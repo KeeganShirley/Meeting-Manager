@@ -1,0 +1,68 @@
+﻿@page
+@model Meeting_Manager.Pages.Profile.Student_ProfileModel
+@{
+}
+
+   
+<div style="position: relative; left: 125px;">
+    <h3>My Student Profile</h3>
+</div>
+
+
+
+@*//Sidebar with Options*@
+
+
+    <div style="width: 175px; height: 100%; position: fixed; left: 0; top: 0; overflow-y: scroll; background-color: #CBC3E3;">
+    <ul>
+        <li><button style="background-color: white;">My Meetings</button></li>
+        <li><button style="background-color: white;">Profile</button></li>
+        <li><button style="background-color: white;">Queue</button></li>
+
+    </ul>
+</div>
+
+
+
+@*//Chart for Student Profile Options*@
+
+<div style="position: relative; left: 125px;">
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Preferred Phone Number</th>
+            <th>Command:</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Aidan</td>
+            <td>Lame</td>
+            <td>AidanisLame@dukes.jmu.edu</td>
+            <td>703-123-1234</td>
+            <td>  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-primary">Edit</button>
+                    
+                </div>
+            </td>
+
+        </tr>
+        
+      
+    </tbody>
+</table>
+
+ 
+</div>
+
+<figure>
+    <img src="~/images/puppy.png" class="figure-img img-fluid rounded" />
+    
+</figure>
+
+
+
