@@ -11,7 +11,7 @@ namespace Meeting_Manager.Pages.DB
         // Connection String
         private static readonly String? MeetingManagerDBConnString = "Server=Localhost;Database=OfficeHours;Trusted_Connection=True";
 
-        public static SqlDataReader StudentReader()
+        public static SqlDataReader Reader()
         {
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = MeetingManagerDBConnection;
@@ -25,23 +25,23 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
-        public static void InsertProduct(Product p)
-        {
-            String sqlQuery = "INSERT INTO Product (ProductName, ProductCost, ProductDescription) \r\nVALUES (";
-            sqlQuery += "'" + p.ProductName + "',";
-            sqlQuery += p.ProductCost + ",'";
-            sqlQuery += p.ProductDescription + "')";
+        //public static void InsertProduct(Product p)
+        //{
+        //    String sqlQuery = "INSERT INTO Product (ProductName, ProductCost, ProductDescription) \r\nVALUES (";
+        //    sqlQuery += "'" + p.ProductName + "',";
+        //    sqlQuery += p.ProductCost + ",'";
+        //    sqlQuery += p.ProductDescription + "')";
 
-            SqlCommand cmdProductReader = new SqlCommand();
-            cmdProductReader.Connection = GroceryDBConnection;
-            cmdProductReader.Connection.ConnectionString = GroceryDBConnString;
-            cmdProductReader.CommandText = sqlQuery;
+        //    SqlCommand cmdProductReader = new SqlCommand();
+        //    cmdProductReader.Connection = GroceryDBConnection;
+        //    cmdProductReader.Connection.ConnectionString = GroceryDBConnString;
+        //    cmdProductReader.CommandText = sqlQuery;
 
-            cmdProductReader.Connection.Open();
+        //    cmdProductReader.Connection.Open();
 
-            cmdProductReader.ExecuteNonQuery();
+        //    cmdProductReader.ExecuteNonQuery();
 
-        }
+        //}
 
 
 

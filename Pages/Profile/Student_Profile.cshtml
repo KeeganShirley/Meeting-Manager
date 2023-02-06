@@ -40,10 +40,20 @@
     </thead>
     <tbody>
         <tr>
-            <td>Aidan</td>
-            <td>Lame</td>
-            <td>AidanisLame@dukes.jmu.edu</td>
-            <td>703-123-1234</td>
+
+                @{
+                    foreach (var studentprofile in Model.StudentList)
+                    {
+                    <tr>
+                        <td class="text-danger">@studentprofile.StudentFName</td>
+                        <td>@studentprofile.StudentLName</td>
+                        <td>@studentprofile.GroupPartnerFirstName</td>
+                        <td>@studentprofile.GroupPartnerLastName</td>
+                    </tr>
+                    }
+
+
+                }
             <td>  <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-primary">Edit</button>
                     
@@ -51,7 +61,7 @@
             </td>
 
         </tr>
-        
+
       
     </tbody>
 </table>
