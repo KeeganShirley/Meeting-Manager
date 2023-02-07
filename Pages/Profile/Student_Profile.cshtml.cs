@@ -27,6 +27,8 @@ namespace Meeting_Manager.Pages.Profile
                 StudentID = Int32.Parse(studentReader["StudentID"].ToString()),
                 StudentFName = studentReader["StudentFName"].ToString(),
                 StudentLName = studentReader["StudentLName"].ToString(),
+                StuEmail = studentReader["StuEmail"].ToString(),
+                StuPhoneNum = studentReader["StuPhoneNum"].ToString(),
                 GroupPartnerFirstName = studentReader["GroupPartnerFirstName"].ToString(),
                 GroupPartnerLastName = studentReader["GroupPartnerLastName"].ToString()
 
@@ -36,7 +38,10 @@ namespace Meeting_Manager.Pages.Profile
             DBClass.MeetingManagerDBConnection.Close();
         }
 
-
+        public void OnPost()
+        {
+            
+        }
 
 
     }
