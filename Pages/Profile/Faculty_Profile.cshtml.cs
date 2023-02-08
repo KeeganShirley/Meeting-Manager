@@ -30,7 +30,7 @@ namespace Meeting_Manager.Pages.Profile
                     FacultyLName = facultyReader["FacultyLName"].ToString(),
                     FacultyEmail = facultyReader["FacultyEmail"].ToString(),
                     OfficePhoneNum = facultyReader["OfficePhoneNum"].ToString(),
-                    OfficeLoc = facultyReader["OfficeLoc"].ToString(),
+                    OfficeLocation = facultyReader["OfficeLocation"].ToString(),
                     FacultyClass1 = facultyReader["FacultyClass1"].ToString(),
                     FacultyClass2 = facultyReader["FacultyClass2"].ToString(),
                     FacultyClass3 = facultyReader["FacultyClass3"].ToString(),

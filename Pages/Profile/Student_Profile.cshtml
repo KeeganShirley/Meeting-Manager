@@ -35,7 +35,8 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Preferred Phone Number</th>
-            <th>Command:</th>
+            <th>Group Partner First Name:</th>
+            <th>Group Partner Last Name:</th>
         </tr>
     </thead>
     <tbody>
@@ -45,19 +46,19 @@
                     foreach (var studentprofile in Model.StudentList)
                     {
                     <tr>
-                        <td>@studentprofile.StudentFName</td>
-                        <td>@studentprofile.StudentLName</td>
-                        <td>@studentprofile.StuEmail</td>
-                        <td>@studentprofile.StuPhoneNum</td>
-                        <td>@studentprofile.GroupPartnerFirstName</td>
-                        <td>@studentprofile.GroupPartnerLastName</td>
+                        <td contenteditable ="true">@studentprofile.StudentFName</td>
+                        <td contenteditable="true">@studentprofile.StudentLName</td>
+                        <td contenteditable="true">@studentprofile.StuEmail</td>
+                        <td contenteditable="true">@studentprofile.StuPhoneNum</td>
+                        <td contenteditable="true">@studentprofile.GroupPartnerFirstName</td>
+                        <td contenteditable="true">@studentprofile.GroupPartnerLastName</td>
                     </tr>
                     }
 
 
                 }
             <td>  <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-outline-primary">Edit</button>
+                <button id="saveButton">Save Changes</button>
                     
                 </div>
             </td>
@@ -68,8 +69,38 @@
     </tbody>
 </table>
 
+
+
+    <script>
+
+        document.getElementById("saveButton").addEventListener("click", function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/api/officehours", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Handle the response from the server
+                }
+            };
+            var data = JSON.stringify({
+                col1Value1: document.getElementById("col1-row1").value,
+                col2Value1: document.getElementById("col2-row1").value,
+                col3Value1: document.getElementById("col3-row1").value,
+                col4Value1: document.getElementById("col4-row1").value,
+                col5Value1: document.getElementById("col5-row1").value,
+                col6Value1: document.getElementById("col6-row1").value
+            });
+            xhr.send(data);
+        });
+    </script>
+
+
+
  
 </div>
+
+
+
 
 
 
