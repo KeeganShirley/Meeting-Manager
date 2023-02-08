@@ -41,18 +41,24 @@
         </thead>
         <tbody>
             <tr>
-                <td>Prezzy</td>
-                <td>Alger</td>
-                <td>IamFaculty@dukes.jmu.edu</td>
-                <td>703-123-1234</td>
-                <td>2011 Hartman Hall</td>
+
+                @{
+                    foreach (var FacultyProfile in Model.FacultyList)
+                    {
+                
+                <td>@FacultyProfile.FacultyFName</td>
+                <td>@FacultyProfile.FacultyLName</td>
+                <td>@FacultyProfile.FacultyEmail</td>
+                <td>@FacultyProfile.OfficePhoneNum</td>
+                <td>@FacultyProfile.OfficeLoc</td>
                 <td>MoWe: 12:45pm-2:45pm <br /> TuThu: 9:00am-12:00pm
 
                 </td>
                 <td>
                 <button type="button" class="btn btn-outline-primary">Edit</button>
                 </td>
-                
+                    }
+                }
                 
             </tr>
 

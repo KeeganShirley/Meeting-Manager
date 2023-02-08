@@ -11,12 +11,29 @@ namespace Meeting_Manager.Pages.DB
         // Connection String
         private static readonly String? MeetingManagerDBConnString = "Server=Localhost;Database=OfficeHours;Trusted_Connection=True";
 
+        public static object MeetingManagerDBConection { get; internal set; }
+
         public static SqlDataReader Reader()
         {
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = MeetingManagerDBConnection;
             cmdProductRead.Connection.ConnectionString = MeetingManagerDBConnString;
             cmdProductRead.CommandText = "SELECT * FROM STUDENT";
+
+            cmdProductRead.Connection.Open();
+
+            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+
+            return tempReader;
+        }
+
+
+        public static SqlDataReader facultyReader()
+        {
+            SqlCommand cmdProductRead = new SqlCommand();
+            cmdProductRead.Connection = MeetingManagerDBConnection;
+            cmdProductRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdProductRead.CommandText = "SELECT * FROM FACULTY";
 
             cmdProductRead.Connection.Open();
 

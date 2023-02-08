@@ -18,7 +18,7 @@ namespace Meeting_Manager.Pages.Profile
 
         public void OnGet()
         {
-            SqlDataReader studentReader = DB.DBClass.Reader();
+            SqlDataReader studentReader = DBClass.Reader();
 
             while (studentReader.Read())
             {
