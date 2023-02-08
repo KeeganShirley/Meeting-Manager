@@ -1,0 +1,119 @@
+﻿@page
+@model Meeting_Manager.Pages.Meeting.FacultySignUp_SheetModel
+@{
+}
+
+<div style="width: 175px; height: 100%; position: fixed; left: 0; top: 0; overflow-y: scroll; background-color: #CBC3E3;">
+    <ul>
+        <li><button style="background-color: white;"><a href="/Meeting/Faculty_Meeting">My Meetings</a></button></li>
+        <li><button style="background-color: white;"><a href="/Profile/Faculty_Profile">My Profile</a></button></button></li>
+        <li><button style="background-color: white;"><a href="/Queue/Faculty_Queue">My Queue</a></button></button></li>
+
+    </ul>
+</div>
+
+<div class="message" style="font-size: 36px; font-weight: bold; text-align: center;">Set Date/Time for Office Hour Session: 
+      <br   />
+  <div class="message" style="font-size: 20px; text-align: center;">Please fill out the fields below: 
+
+
+  </div>
+  </div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .left-section,
+        .right-section {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid deepskyblue;
+            border-radius: 4px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: deepskyblue;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <div class="container">
+        <div class="left-section">
+            <input type="text" placeholder="Professor Name">
+            <input type="text" placeholder="Office Location">
+        </div>
+        <div class="right-section">
+           
+            <select>
+                <option value="">Time Range</option>
+                 <option value="8am">8am</option>
+                <option value="9am">9am</option>
+                <option value="10am">10am</option>
+                <option value="11am">11am</option>
+                <option value="12pm">12pm</option>
+                <option value="1pm">1pm</option>
+                <option value="2pm">2pm</option>
+                <option value="3pm">3pm</option>
+                <option value="4pm">4pm</option>
+                <option value="5pm">5pm</option>
+                <option value="6pm">6pm</option>
+                <option value="7pm">7pm</option>
+                <option value="8pm">8pm</option>
+            </select>
+        </div>
+        <br />
+        <div class="right-section">
+           
+            <select>
+                <option value="">Time Range</option>
+                <option value="8am">8am</option>
+                <option value="9am">9am</option>
+                <option value="10am">10am</option>
+                <option value="11am">11am</option>
+                <option value="12pm">12pm</option>
+                <option value="1pm">1pm</option>
+                <option value="2pm">2pm</option>
+                <option value="3pm">3pm</option>
+                <option value="4pm">4pm</option>
+                <option value="5pm">5pm</option>
+                <option value="6pm">6pm</option>
+                <option value="7pm">7pm</option>
+                <option value="8pm">8pm</option>
+            </select>
+        </div>
+    </div>
+
+
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="submit-btn">Submit</button>
+    </div>
+</body>
+</html>
