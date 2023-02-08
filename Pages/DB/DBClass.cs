@@ -1,4 +1,5 @@
 ﻿using Meeting_Manager.Pages.DataClasses;
+using Meeting_Manager.Pages.Profile;
 using System.Data.SqlClient;
 
 namespace Meeting_Manager.Pages.DB
@@ -60,7 +61,28 @@ namespace Meeting_Manager.Pages.DB
 
         //}
 
+        public static void UpdateStudent(StudentProfile s)
+        {
+            
+                string sqlQuery = "UPDATE Student SET ";
+                sqlQuery += "StudentID='" + s.StudentID + "',";
+                sqlQuery += "StudentFName='" + s.StudentFName + "',";
+                sqlQuery += "StudentLName='" + s.StudentLName + "',";
+                sqlQuery += "StuEmail='" + s.StuEmail + "',";
+                sqlQuery += "StuPhoneNum='" + s.StuPhoneNum + "',";
+                sqlQuery += "GroupPartnerFirstName='" + s.GroupPartnerFirstName + "',";
+                sqlQuery += "GroupPartnerLastName='" + s.GroupPartnerLastName + "' WHERE StudentID =" + s.StudentID;
 
+
+                SqlCommand cmdProductRead = new SqlCommand();
+                cmdProductRead.Connection = new SqlConnection();
+                cmdProductRead.Connection.ConnectionString = MeetingManagerDBConnString;
+                cmdProductRead.CommandText = sqlQuery;
+                cmdProductRead.Connection.Open();
+                cmdProductRead.ExecuteNonQuery();
+            
+
+        }
 
     }
 }

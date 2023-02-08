@@ -8,6 +8,7 @@
         public String? FacultyEmail { get; set; }
         public String? OfficePhoneNum { get; set; }
         public String? OfficeLocation { get; set; }
+        public String? FacultyDescription { get; set; }
         public String? FacultyClass1 { get; set; }
         public String? FacultyClass2 { get; set; }
         public String? FacultyClass3 { get; set; }
