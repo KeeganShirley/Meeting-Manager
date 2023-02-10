@@ -46,12 +46,12 @@
                     foreach (var FacultyProfile in Model.FacultyList)
                     {
                 
-                        <td contenteditable="true">@FacultyProfile.FacultyFName</td>
-                        <td contenteditable="true">@FacultyProfile.FacultyLName</td>
-                        <td contenteditable="true">@FacultyProfile.FacultyEmail</td>
-                        <td contenteditable="true">@FacultyProfile.OfficePhoneNum</td>
-                        <td contenteditable="true">@FacultyProfile.OfficeLocation</td>
-                        <td contenteditable="true">
+                        <td>@FacultyProfile.FacultyFName</td>
+                        <td>@FacultyProfile.FacultyLName</td>
+                        <td>@FacultyProfile.FacultyEmail</td>
+                        <td>@FacultyProfile.OfficePhoneNum</td>
+                        <td>@FacultyProfile.OfficeLocation</td>
+                        <td>
                             MoWe: 12:45pm-2:45pm <br /> TuThu: 9:00am-12:00pm</td>
                 <td>
                             <a asp-page="EditFacultyProfile" class="btn btn-outline-primary" asp-route-facultyid="@FacultyProfile.FacultyID">Edit</a>

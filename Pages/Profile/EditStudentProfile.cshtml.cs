@@ -18,6 +18,7 @@ namespace Meeting_Manager.Pages.Profile
     
 
 
+
         public void OnGet(int studentID)
         {
             SqlDataReader singleStudent = DBClass.SingleStudentReader(studentID);

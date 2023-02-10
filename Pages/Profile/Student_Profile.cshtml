@@ -47,12 +47,12 @@
                     foreach (var studentprofile in Model.StudentList)
                     {
                     <tr>
-                        <td contenteditable ="true">@studentprofile.StudentFName</td>
-                        <td contenteditable="true">@studentprofile.StudentLName</td>
-                        <td contenteditable="true">@studentprofile.StuEmail</td>
-                        <td contenteditable="true">@studentprofile.StuPhoneNum</td>
-                        <td contenteditable="true">@studentprofile.GroupPartnerFirstName</td>
-                        <td contenteditable="true">@studentprofile.GroupPartnerLastName</td>
+                        <td>@studentprofile.StudentFName</td>
+                        <td>@studentprofile.StudentLName</td>
+                        <td>@studentprofile.StuEmail</td>
+                        <td>@studentprofile.StuPhoneNum</td>
+                        <td>@studentprofile.GroupPartnerFirstName</td>
+                        <td>@studentprofile.GroupPartnerLastName</td>
                         <td>
            
                         <a asp-page="EditStudentProfile" class="btn btn-outline-primary" asp-route-studentid="@studentprofile.StudentID">Edit</a>

@@ -63,24 +63,28 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="left-section">
-            <input type="text" placeholder="Name">
-            <input type="text" placeholder="Purpose">
-        </div>
-        <div class="right-section">
-            <input type="text" placeholder="Group Size">
-            <select>
-                <option value="">Time</option>
-                <option value="1pm">1pm</option>
-                <option value="2pm">2pm</option>
-                <option value="3pm">3pm</option>
-                <option value="4pm">4pm</option>
-            </select>
-        </div>
-    </div>
-    <div style="text-align: center; margin-top: 20px;">
-        <button class="submit-btn">Submit</button>
-    </div>
+              <form asp-page="SignUp_Sheet">
+    <input type="hidden" asp-for="@Model.MeetingUpdate.MeetingID" />
+
+    <label>Meeting Time:</label>
+    <input type="text" asp-for="@Model.MeetingUpdate.MeetingTime" />
+    <br />
+    <label>Meeting Date:</label>
+    <input type="text" asp-for="@Model.MeetingUpdate.MeetingDate" />
+    <br />
+    <label>FacultyID</label>
+    <input type="text" asp-for="@Model.MeetingUpdate.FacultyID" />
+    <br />
+    <label>StudentID</label>
+    <input type="text" asp-for="@Model.MeetingUpdate.StudentID" />
+    
+   
+    <br /><br />
+    <input type="submit" class="btn btn-success" asp-page="SignUp_Sheet" />
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+
 </body>
 </html>
+

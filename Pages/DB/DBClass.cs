@@ -43,6 +43,20 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
+        public static SqlDataReader MeetingReader()
+        {
+            SqlCommand cmdMeetingRead = new SqlCommand();
+            cmdMeetingRead.Connection = MeetingManagerDBConnection;
+            cmdMeetingRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdMeetingRead.CommandText = "SELECT * FROM MEETING";
+
+            cmdMeetingRead.Connection.Open();
+
+            SqlDataReader tempReader = cmdMeetingRead.ExecuteReader();
+
+            return tempReader;
+        }
+
         //public static void InsertProduct(Product p)
         //{
         //    String sqlQuery = "INSERT INTO Product (ProductName, ProductCost, ProductDescription) \r\nVALUES (";
@@ -65,6 +79,7 @@ namespace Meeting_Manager.Pages.DB
         {
             SqlCommand cmdsstudentRead = new SqlCommand();
             cmdsstudentRead.Connection = new SqlConnection();
+            //cmdsstudentRead.Connection = MeetingManagerDBConnection;
             cmdsstudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
             cmdsstudentRead.CommandText = "SELECT * FROM STUDENT WHERE StudentID = " + StudentID;
             cmdsstudentRead.Connection.Open();
@@ -108,6 +123,7 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
+
         public static void UpdateFaculty(FacultyProfile f)
         {
 
@@ -132,6 +148,40 @@ namespace Meeting_Manager.Pages.DB
             cmdupdatefacultyRead.CommandText = sqlQuery;
             cmdupdatefacultyRead.Connection.Open();
             cmdupdatefacultyRead.ExecuteNonQuery();
+
+
+        }
+
+
+
+
+        public static SqlDataReader SingleMeetingReader(int MeetingID)
+        {
+            SqlCommand cmdMeetingRead = new SqlCommand();
+            cmdMeetingRead.Connection = new SqlConnection();
+            cmdMeetingRead.Connection = MeetingManagerDBConnection;
+            cmdMeetingRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdMeetingRead.CommandText = "SELECT * FROM Meeting WHERE MeetingID = " + MeetingID;
+
+            cmdMeetingRead.Connection.Open();
+            SqlDataReader tempReader = cmdMeetingRead.ExecuteReader();
+
+            return tempReader;
+        }
+
+        public static void UpdateMeeting(MeetingProfile m)
+        {
+
+            string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
+            sqlQuery +=  m.MeetingID + ", " + m.MeetingTime + ", " + m.MeetingDate + ", " + m.FacultyID  + ", " + m.StudentID;
+            sqlQuery +=  ");";
+
+            SqlCommand cmdupdatestudentRead = new SqlCommand();
+            cmdupdatestudentRead.Connection = new SqlConnection();
+            cmdupdatestudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdupdatestudentRead.CommandText = sqlQuery;
+            cmdupdatestudentRead.Connection.Open();
+            cmdupdatestudentRead.ExecuteNonQuery();
 
 
         }
