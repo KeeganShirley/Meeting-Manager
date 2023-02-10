@@ -37,6 +37,7 @@
             <th>Preferred Phone Number</th>
             <th>Group Partner First Name:</th>
             <th>Group Partner Last Name:</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -52,18 +53,15 @@
                         <td contenteditable="true">@studentprofile.StuPhoneNum</td>
                         <td contenteditable="true">@studentprofile.GroupPartnerFirstName</td>
                         <td contenteditable="true">@studentprofile.GroupPartnerLastName</td>
+                        <td>
+           
+                        <a asp-page="EditStudentProfile" class="btn btn-outline-primary" asp-route-studentid="@studentprofile.StudentID">Edit</a>
+                        </td>
                     </tr>
-                    }
-
+                }
 
                 }
-            <td>  
-                <form method="post">
-                    <button type="submit">Save Changes</button>
-                    </form>
-                    
-                </div>
-            </td>
+
 
         </tr>
 

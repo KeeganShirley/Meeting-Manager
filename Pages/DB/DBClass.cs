@@ -16,14 +16,14 @@ namespace Meeting_Manager.Pages.DB
 
         public static SqlDataReader Reader()
         {
-            SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = MeetingManagerDBConnection;
-            cmdProductRead.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdProductRead.CommandText = "SELECT * FROM STUDENT";
+            SqlCommand cmdstudentRead = new SqlCommand();
+            cmdstudentRead.Connection = MeetingManagerDBConnection;
+            cmdstudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdstudentRead.CommandText = "SELECT * FROM STUDENT";
 
-            cmdProductRead.Connection.Open();
+            cmdstudentRead.Connection.Open();
 
-            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+            SqlDataReader tempReader = cmdstudentRead.ExecuteReader();
 
             return tempReader;
         }
@@ -31,14 +31,14 @@ namespace Meeting_Manager.Pages.DB
 
         public static SqlDataReader facultyReader()
         {
-            SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = MeetingManagerDBConnection;
-            cmdProductRead.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdProductRead.CommandText = "SELECT * FROM FACULTY";
+            SqlCommand cmdfacultyRead = new SqlCommand();
+            cmdfacultyRead.Connection = MeetingManagerDBConnection;
+            cmdfacultyRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdfacultyRead.CommandText = "SELECT * FROM FACULTY";
 
-            cmdProductRead.Connection.Open();
+            cmdfacultyRead.Connection.Open();
 
-            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+            SqlDataReader tempReader = cmdfacultyRead.ExecuteReader();
 
             return tempReader;
         }
@@ -61,6 +61,18 @@ namespace Meeting_Manager.Pages.DB
 
         //}
 
+        public static SqlDataReader SingleStudentReader(int StudentID)
+        {
+            SqlCommand cmdsstudentRead = new SqlCommand();
+            cmdsstudentRead.Connection = new SqlConnection();
+            cmdsstudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdsstudentRead.CommandText = "SELECT * FROM STUDENT WHERE StudentID = " + StudentID;
+            cmdsstudentRead.Connection.Open();
+            SqlDataReader tempReader = cmdsstudentRead .ExecuteReader();
+
+            return tempReader;
+        }
+
         public static void UpdateStudent(StudentProfile s)
         {
             
@@ -74,15 +86,56 @@ namespace Meeting_Manager.Pages.DB
                 sqlQuery += "GroupPartnerLastName='" + s.GroupPartnerLastName + "' WHERE StudentID =" + s.StudentID;
 
 
-                SqlCommand cmdProductRead = new SqlCommand();
-                cmdProductRead.Connection = new SqlConnection();
-                cmdProductRead.Connection.ConnectionString = MeetingManagerDBConnString;
-                cmdProductRead.CommandText = sqlQuery;
-                cmdProductRead.Connection.Open();
-                cmdProductRead.ExecuteNonQuery();
+                SqlCommand cmdupdatestudentRead = new SqlCommand();
+            cmdupdatestudentRead.Connection = new SqlConnection();
+            cmdupdatestudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdupdatestudentRead.CommandText = sqlQuery;
+            cmdupdatestudentRead.Connection.Open();
+            cmdupdatestudentRead.ExecuteNonQuery();
             
 
         }
+
+        public static SqlDataReader SingleFacultyReader(int FacultyID)
+        {
+            SqlCommand cmdfacultyRead = new SqlCommand();
+            cmdfacultyRead.Connection = new SqlConnection();
+            cmdfacultyRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdfacultyRead.CommandText = "SELECT * FROM FACULTY WHERE FacultyID = " + FacultyID;
+            cmdfacultyRead.Connection.Open();
+            SqlDataReader tempReader = cmdfacultyRead.ExecuteReader();
+
+            return tempReader;
+        }
+
+        public static void UpdateFaculty(FacultyProfile f)
+        {
+
+            string sqlQuery = "UPDATE FACULTY SET ";
+            sqlQuery += "FacultyID='" + f.FacultyID + "',";
+            sqlQuery += "FacultyFName='" + f.FacultyFName + "',";
+            sqlQuery += "FacultyLName='" + f.FacultyLName + "',";
+            sqlQuery += "FacultyEmail='" + f.FacultyEmail + "',";
+            sqlQuery += "OfficePhoneNum='" + f.OfficePhoneNum + "',";
+            sqlQuery += "OfficeLoc='" + f.OfficeLocation + "',";
+            sqlQuery += "FacultyDescription='" + f.FacultyDescription + "',";
+            sqlQuery += "FacultyClass1='" + f.FacultyClass1 + "',";
+            sqlQuery += "FacultyClass2='" + f.FacultyClass2 + "',";
+            sqlQuery += "FacultyClass3='" + f.FacultyClass3 + "',";
+            sqlQuery += "FacultyClass4='" + f.FacultyClass4 + "',";
+            sqlQuery += "FacultyClass5='" + f.FacultyClass5 + "' WHERE FACULTYID =" + f.FacultyID;
+
+
+            SqlCommand cmdupdatefacultyRead = new SqlCommand();
+            cmdupdatefacultyRead.Connection = new SqlConnection();
+            cmdupdatefacultyRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdupdatefacultyRead.CommandText = sqlQuery;
+            cmdupdatefacultyRead.Connection.Open();
+            cmdupdatefacultyRead.ExecuteNonQuery();
+
+
+        }
+
 
     }
 }

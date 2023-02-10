@@ -1,0 +1,33 @@
+﻿@page
+@model Meeting_Manager.Pages.Profile.EditStudentProfileModel
+
+@{
+
+
+}
+
+
+<form asp-page="EditStudentProfile">
+    <input type="hidden" asp-for="@Model.studentToUpdate.StudentID" />
+
+    <label>Student First Name:</label>
+    <input type="text" asp-for="@Model.studentToUpdate.StudentFName" />
+    <br />
+    <label>Student Last Name:</label>
+    <input type="text" asp-for="@Model.studentToUpdate.StudentLName" />
+    <br />
+    <label>Student Email</label>
+    <input type="text" asp-for="@Model.studentToUpdate.StuEmail" />
+    <br />
+    <label>Student Phone Number</label>
+    <input type="text" asp-for="@Model.studentToUpdate.StuPhoneNum" />
+    <br />
+    <label>Group Partner First Name</label>
+    <input type="text" asp-for="@Model.studentToUpdate.GroupPartnerFirstName" />
+    <br />
+    <label>Group Partner Last Name</label>
+    <input type="text" asp-for="@Model.studentToUpdate.GroupPartnerLastName" />
+    <br /><br />
+    <input type="submit" class="btn btn-success" asp-page="EditStudentProfile" />
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>

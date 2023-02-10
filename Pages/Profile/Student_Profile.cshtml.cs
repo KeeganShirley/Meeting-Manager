@@ -10,8 +10,6 @@ namespace Meeting_Manager.Pages.Profile
     public class Student_ProfileModel : PageModel
     {
 
-        [BindProperty]
-        public StudentProfile studentToUpdate { get; set; }
 
 
         public List<StudentProfile> StudentList { get; set; }
@@ -20,7 +18,7 @@ namespace Meeting_Manager.Pages.Profile
         public Student_ProfileModel()
         {
             StudentList = new List<StudentProfile>();
-            studentToUpdate = new StudentProfile();
+
         }
 
         public void OnGet()
@@ -44,12 +42,11 @@ namespace Meeting_Manager.Pages.Profile
 
             DBClass.MeetingManagerDBConnection.Close();
         }
-
         public IActionResult OnPost()
         {
-            DBClass.UpdateStudent(studentToUpdate);
-            return RedirectToPage("Student_Profile");
+            return RedirectToPage("EditStudentProfile");
         }
+
 
 
     }

@@ -1,0 +1,44 @@
+﻿@page
+@model Meeting_Manager.Pages.Profile.EditFacultyProfileModel
+@{
+}
+
+<form asp-page="EditFacultyProfile">
+    <input type="hidden" asp-for="@Model.facultyToUpdate.FacultyID" />
+
+    <label>Faculty First Name:</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.FacultyFName" />
+    <br />
+    <label>Faculty Last Name:</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.FacultyLName" />
+    <br />
+    <label>Faculty Email</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.FacultyEmail" />
+    <br />
+    <label>Office Phone Number</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.OfficePhoneNum" />
+    <br />
+    <label>Office Location</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.OfficeLocation" />
+    <br />
+    <label>Faculty Description</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.OfficeLocation" />
+    <br />
+    <label>Faculty Class 1</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.FacultyClass1" />
+    <br />
+    <label>Faculty Class 2</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.FacultyClass2" />
+    <br />
+    <label>Faculty Class 3</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.FacultyClass3" />
+    <br />
+    <label>Faculty Class 4</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.FacultyClass4" />
+    <br />
+    <label>Faculty Class 5</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.FacultyClass5" />
+    <br /><br />
+    <input type="submit" class="btn btn-success" asp-page="EditFacultyProfile" />
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>
