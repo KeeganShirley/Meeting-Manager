@@ -1,3 +1,4 @@
+using Meeting_Manager.Pages.DataClasses;
 using Meeting_Manager.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,41 +8,45 @@ namespace Meeting_Manager.Pages.Meeting
 {
     public class Student_MeetingModel : PageModel
     {
-        //Putting the faculty name into a class for info used later
-        public class FacultyName
-        {
-            public string FacultyFName { get; set; }
-            public string FacultyLName { get; set; }
-            public string FacultyID { get; set; }
-        }
+        public List<FacultyProfile> FacultyList { get; set; }
 
-        //Creating a list of the faculty names to be displayed in the dropdown menu
-        public List<FacultyName> FacultyList { get; set; }
+        [BindProperty]
+        public int SelectedID { get; set; }
 
-        public string SelectedFacultyID { get; set; }
-
-        public FacultyName SelectedFacutly { get; set; }
-
-
-        //Constructor
         public Student_MeetingModel()
         {
-            FacultyList = new List<FacultyName>();
+            FacultyList = new List<FacultyProfile>();
         }
 
-        //OnGet is used to read the SQL data 
         public void OnGet()
         {
-            SqlDataReader reader = DBClass.facultyReader();
+            SqlDataReader FacultyReader = DBClass.facultyReader();
 
-            while (reader.Read())
+            while (FacultyReader.Read())
             {
-                FacultyName faculty = new FacultyName();
-                faculty.FacultyFName = reader["FacultyFName"].ToString();
-                faculty.FacultyLName = reader["FacultyLName"].ToString();
-                FacultyList.Add(faculty);
+                FacultyList.Add(new FacultyProfile
+                {
+                    FacultyFName = FacultyReader["FacultyFName"].ToString(),
+                    FacultyLName = FacultyReader["FacultyLName"].ToString(),
+                    FacultyID = Int32.Parse(FacultyReader["FacultyID"].ToString())
+                });
+
             }
-            reader.Close();
+            DBClass.MeetingManagerDBConnection.Close();
+
+            //int SelectedAccount = Convert.ToInt32(RouteData.Values["FacultyID"]);
+            //SqlDataReader 
+        }
+
+        public IActionResult OnPostSingleSelect()
+        {
+            string SelectedFac = Request.Form["FacultySearch"].ToString();
+
+            int index = SelectedFac.IndexOf(')');
+            String shortened = SelectedFac.Substring(0, index);
+            return RedirectToPage("./SignUp_Sheet", new { FacultyID = shortened.ToString(), Student = Convert.ToInt32(RouteData.Values["FacultyID"]) });
+            DBClass.MeetingManagerDBConnection.Close();
+
         }
     }
 
