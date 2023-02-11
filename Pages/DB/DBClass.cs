@@ -169,11 +169,11 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
-        public static void UpdateMeeting(MeetingProfile m)
+        public static void UpdateMeeting(MeetingProfile m, int facultyID)
         {
 
             string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
-            sqlQuery +=  m.MeetingID + ", " + m.MeetingTime + ", " + m.MeetingDate + ", " + m.FacultyID  + ", " + m.StudentID;
+            sqlQuery +=  m.MeetingID + ", " + m.MeetingTime + ", " + m.MeetingDate + ", " + facultyID  + ", " + m.StudentID;
             sqlQuery +=  ");";
 
             SqlCommand cmdupdatestudentRead = new SqlCommand();
@@ -181,7 +181,7 @@ namespace Meeting_Manager.Pages.DB
             cmdupdatestudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
             cmdupdatestudentRead.CommandText = sqlQuery;
             cmdupdatestudentRead.Connection.Open();
-            cmdupdatestudentRead.ExecuteNonQuery();
+            _ = cmdupdatestudentRead.ExecuteNonQuery();
 
 
         }

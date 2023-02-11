@@ -8,19 +8,21 @@ namespace Meeting_Manager.Pages.Meeting
 {
     public class SignUp_SheetModel : PageModel
     {
+        public int FacultyID { get; set; }
+
         [BindProperty]
         public MeetingProfile MeetingUpdate { get; set; }
-
-
-
+                
         public SignUp_SheetModel()
         {
             MeetingUpdate = new MeetingProfile();
         }
 
 
-        public void OnGet(int MeetingID)
+        public void OnGet(int MeetingID, int FacultyID)
         {
+            this.FacultyID = FacultyID;
+
             SqlDataReader singleMeeting = DBClass.SingleMeetingReader(MeetingID);
 
             while (singleMeeting.Read())
@@ -28,7 +30,7 @@ namespace Meeting_Manager.Pages.Meeting
                 MeetingUpdate.MeetingID = MeetingID;
                 MeetingUpdate.MeetingTime = singleMeeting["MeetingTime"].ToString();
                 MeetingUpdate.MeetingDate = singleMeeting["MeetingDate"].ToString();
-                MeetingUpdate.FacultyID = (int)singleMeeting["Faculty"];
+                //MeetingUpdate.FacultyID = (int)singleMeeting["Faculty"];
                 MeetingUpdate.StudentID = (int)singleMeeting["StudentID"];
                 
             
@@ -43,7 +45,7 @@ namespace Meeting_Manager.Pages.Meeting
 
         public IActionResult OnPost()
         {
-            DBClass.UpdateMeeting(MeetingUpdate);
+            DBClass.UpdateMeeting(MeetingUpdate, FacultyID);
             return RedirectToPage("SignUp_Sheet");
         }
 

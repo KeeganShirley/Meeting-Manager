@@ -6,9 +6,9 @@
 <body>
     <section>
         <nav>
-            <h1>Faculty Search</h1>
+            <h1 style="margin-left: 60px">Faculty Search</h1>
             <form asp-page-handler="SingleSelect" method="post">
-                <select name="FacultySearch" class="form-select" aria-label="Default select example" required>
+                <select name="FacultySearch" class="form-select" aria-label="Default select example" required style="margin-left: 60px">
                     <option selected>Search Faculty Members</option>
                     @{
                         foreach (var Faculty in Model.FacultyList)
