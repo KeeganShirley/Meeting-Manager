@@ -49,13 +49,14 @@ namespace Meeting_Manager.Pages.Meeting
         //    return RedirectToPage("SignUp_Sheet");
         //}
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int FacultyID)
         {
+            this.FacultyID = FacultyID;
             DBClass.UpdateMeeting(MeetingUpdate, FacultyID);
 
             DBClass.MeetingManagerDBConnection.Close();
 
-            return RedirectToPage("SignUp_Sheet");
+            return RedirectToPage("Student_Profile");
         }
 
 

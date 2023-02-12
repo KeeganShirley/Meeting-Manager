@@ -189,13 +189,14 @@ namespace Meeting_Manager.Pages.DB
         //Query to update meeting info
         public static void UpdateMeeting(MeetingProfile m, int facultyID)
         {
+            
             m.MeetingID += 1;
 
             string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
             sqlQuery += "'" + m.MeetingID + "', ";
             sqlQuery += "'" + m.MeetingTime + "', ";
             sqlQuery += "'" + m.MeetingDate + "', ";
-            sqlQuery += facultyID + ",";
+            sqlQuery += facultyID + ", ";
             sqlQuery += m.StudentID + ");";
             //sqlQuery += ");";
 
@@ -211,8 +212,6 @@ namespace Meeting_Manager.Pages.DB
 
 
         }
-
-
 
     }
 }
