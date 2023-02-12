@@ -169,22 +169,49 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
+        //public static void UpdateMeeting(MeetingProfile m, int facultyID)
+        //{
+
+        //    string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
+        //    sqlQuery +=  m.MeetingID + ", " + m.MeetingTime + ", " + m.MeetingDate + ", " + facultyID  + ", " + m.StudentID;
+        //    sqlQuery +=  ");";
+
+        //    SqlCommand cmdupdatestudentRead = new SqlCommand();
+        //    cmdupdatestudentRead.Connection = new SqlConnection();
+        //    cmdupdatestudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
+        //    cmdupdatestudentRead.CommandText = sqlQuery;
+        //    cmdupdatestudentRead.Connection.Open();
+        //    _ = cmdupdatestudentRead.ExecuteNonQuery();
+
+
+        //}
+
+        //Query to update meeting info
         public static void UpdateMeeting(MeetingProfile m, int facultyID)
         {
+            m.MeetingID += 1;
 
             string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
-            sqlQuery +=  m.MeetingID + ", " + m.MeetingTime + ", " + m.MeetingDate + ", " + facultyID  + ", " + m.StudentID;
-            sqlQuery +=  ");";
+            sqlQuery += "'" + m.MeetingID + "', ";
+            sqlQuery += "'" + m.MeetingTime + "', ";
+            sqlQuery += "'" + m.MeetingDate + "', ";
+            sqlQuery += facultyID + ",";
+            sqlQuery += m.StudentID + ");";
+            //sqlQuery += ");";
 
-            SqlCommand cmdupdatestudentRead = new SqlCommand();
-            cmdupdatestudentRead.Connection = new SqlConnection();
-            cmdupdatestudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdupdatestudentRead.CommandText = sqlQuery;
-            cmdupdatestudentRead.Connection.Open();
-            _ = cmdupdatestudentRead.ExecuteNonQuery();
+            SqlCommand cmdUpdateMeeting = new SqlCommand();
+            //cmdUpdateMeeting.Connection = new SqlConnection();
+            cmdUpdateMeeting.Connection = MeetingManagerDBConnection;
+            cmdUpdateMeeting.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdUpdateMeeting.CommandText = sqlQuery;
+
+            cmdUpdateMeeting.Connection.Open();
+
+            cmdUpdateMeeting.ExecuteNonQuery();
 
 
         }
+
 
 
     }

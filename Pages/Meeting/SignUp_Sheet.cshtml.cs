@@ -43,11 +43,21 @@ namespace Meeting_Manager.Pages.Meeting
         }
 
 
+        //public IActionResult OnPost()
+        //{
+        //    DBClass.UpdateMeeting(MeetingUpdate, FacultyID);
+        //    return RedirectToPage("SignUp_Sheet");
+        //}
+
         public IActionResult OnPost()
         {
             DBClass.UpdateMeeting(MeetingUpdate, FacultyID);
+
+            DBClass.MeetingManagerDBConnection.Close();
+
             return RedirectToPage("SignUp_Sheet");
         }
+
 
 
 
