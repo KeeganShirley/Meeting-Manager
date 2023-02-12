@@ -3,6 +3,7 @@
 @{
 }
 
+@*Sidebar*@
 <div style="width: 175px; height: 100%; position: fixed; left: 0; top: 0; overflow-y: scroll; background-color: #CBC3E3;">
     <ul>
         <li><button style="background-color: white;"><a href="/Meeting/Student_Meeting">My Meetings</a></button></li>
@@ -51,7 +52,7 @@
         }
 
         .submit-btn {
-            width: 100%;
+            width: 100%; /*Submit button*/
             background-color: deepskyblue;
             color: white;
             padding: 14px 20px;
@@ -62,7 +63,8 @@
         }
     </style>
 </head>
-<body>
+<body> 
+    @*Signup sheet body*@
               <form asp-page="SignUp_Sheet">
     <input type="hidden" asp-for="@Model.MeetingUpdate.MeetingID" />
 
