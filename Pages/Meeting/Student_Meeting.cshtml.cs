@@ -9,17 +9,16 @@ namespace Meeting_Manager.Pages.Meeting
     public class Student_MeetingModel : PageModel
     {
 
-    
+    //Build a Faculty list to put in the drop down menu from the FACULTY table
     public List<FacultyProfile> FacultyList { get; set; }
 
-    [BindProperty]
-    public int SelectedID { get; set; }
-
+    //Constructor 
     public Student_MeetingModel()
     {
         FacultyList = new List<FacultyProfile>();
     }
 
+    //Get the data for the dropdown menu and display it
     public void OnGet()
     {
         SqlDataReader FacultyReader = DBClass.facultyReader();
@@ -35,11 +34,9 @@ namespace Meeting_Manager.Pages.Meeting
 
         }
         DBClass.MeetingManagerDBConnection.Close();
-
-        //int SelectedAccount = Convert.ToInt32(RouteData.Values["FacultyID"]);
-        //SqlDataReader 
     }
 
+    //Used to take the facultyID selected from the dropdown and carry it to the signup sheet
     public IActionResult OnPostSingleSelect()
         {
             string SelectedFac = Request.Form["FacultySearch"].ToString();

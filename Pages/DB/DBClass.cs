@@ -28,7 +28,7 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
-
+        //Read the Faculty Data
         public static SqlDataReader facultyReader()
         {
             SqlCommand cmdfacultyRead = new SqlCommand();
@@ -43,6 +43,7 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
+        //Read the Meeting Data
         public static SqlDataReader MeetingReader()
         {
             SqlCommand cmdMeetingRead = new SqlCommand();
@@ -57,29 +58,11 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
-        //public static void InsertProduct(Product p)
-        //{
-        //    String sqlQuery = "INSERT INTO Product (ProductName, ProductCost, ProductDescription) \r\nVALUES (";
-        //    sqlQuery += "'" + p.ProductName + "',";
-        //    sqlQuery += p.ProductCost + ",'";
-        //    sqlQuery += p.ProductDescription + "')";
-
-        //    SqlCommand cmdProductReader = new SqlCommand();
-        //    cmdProductReader.Connection = GroceryDBConnection;
-        //    cmdProductReader.Connection.ConnectionString = GroceryDBConnString;
-        //    cmdProductReader.CommandText = sqlQuery;
-
-        //    cmdProductReader.Connection.Open();
-
-        //    cmdProductReader.ExecuteNonQuery();
-
-        //}
 
         public static SqlDataReader SingleStudentReader(int StudentID)
         {
             SqlCommand cmdsstudentRead = new SqlCommand();
             cmdsstudentRead.Connection = new SqlConnection();
-            //cmdsstudentRead.Connection = MeetingManagerDBConnection;
             cmdsstudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
             cmdsstudentRead.CommandText = "SELECT * FROM STUDENT WHERE StudentID = " + StudentID;
             cmdsstudentRead.Connection.Open();
@@ -88,6 +71,8 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
+
+        //This is used to update student information within the STUDENT Table
         public static void UpdateStudent(StudentProfile s)
         {
             
@@ -111,6 +96,7 @@ namespace Meeting_Manager.Pages.DB
 
         }
 
+        //
         public static SqlDataReader SingleFacultyReader(int FacultyID)
         {
             SqlCommand cmdfacultyRead = new SqlCommand();
@@ -123,7 +109,7 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
-
+        //This is used to update faculty information within the FACULTY Table
         public static void UpdateFaculty(FacultyProfile f)
         {
 
@@ -152,9 +138,6 @@ namespace Meeting_Manager.Pages.DB
 
         }
 
-
-
-
         public static SqlDataReader SingleMeetingReader(int MeetingID)
         {
             SqlCommand cmdMeetingRead = new SqlCommand();
@@ -169,26 +152,31 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
+        //This is used to update the meeting table with signup sheet information
         public static void UpdateMeeting(MeetingProfile m, int facultyID)
         {
 
             int currentMaxMeetingID = 0;
 
-            // Get the current highest MeetingID value
+            // Get the highest MeetingID value in the DB
             string sqlQueryCount = "SELECT MAX(MeetingID) FROM MEETING";
             SqlCommand cmdGetMaxMeetingID = new SqlCommand(sqlQueryCount, MeetingManagerDBConnection);
             cmdGetMaxMeetingID.Connection.Open();
             SqlDataReader reader = cmdGetMaxMeetingID.ExecuteReader();
+
             if (reader.Read())
             {
                 currentMaxMeetingID = reader.GetInt32(0);
             }
+
             reader.Close();
+
             cmdGetMaxMeetingID.Connection.Close();
 
             // Increment the current highest MeetingID value by 1
             m.MeetingID = currentMaxMeetingID + 1;
 
+            //Insert the data from the SignUp sheet into the Meeting table
             string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
             sqlQuery += "'" + m.MeetingID + "', ";
             sqlQuery += "'" + m.MeetingTime + "', ";

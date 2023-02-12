@@ -16,7 +16,7 @@ namespace Meeting_Manager.Pages.Profile
             FacultyList = new List<FacultyProfile>();
         }
 
-
+        //Gets the faculty data and displays it
         public void OnGet()
         {
             SqlDataReader facultyReader = DBClass.facultyReader();

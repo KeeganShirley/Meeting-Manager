@@ -21,6 +21,7 @@ namespace Meeting_Manager.Pages.Profile
 
         }
 
+        //Gets the student data and displays it
         public void OnGet()
         {
             SqlDataReader studentReader = DBClass.Reader();
@@ -42,6 +43,8 @@ namespace Meeting_Manager.Pages.Profile
 
             DBClass.MeetingManagerDBConnection.Close();
         }
+        
+        //Redirect to the edit student page
         public IActionResult OnPost()
         {
             return RedirectToPage("EditStudentProfile");

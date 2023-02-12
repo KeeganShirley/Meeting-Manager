@@ -18,7 +18,7 @@ namespace Meeting_Manager.Pages.Profile
             facultyToUpdate= new FacultyProfile();
         }
 
-
+        //Gets the faculty data and displays it
         public void OnGet(int facultyID)
         {
             SqlDataReader singleFaculty = DBClass.SingleFacultyReader(facultyID);
@@ -41,6 +41,7 @@ namespace Meeting_Manager.Pages.Profile
             }
         }
 
+        //Allows for edit of faculty data
         public IActionResult OnPost()
         {
             DBClass.UpdateFaculty(facultyToUpdate);

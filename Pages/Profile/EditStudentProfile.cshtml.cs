@@ -16,9 +16,7 @@ namespace Meeting_Manager.Pages.Profile
             studentToUpdate = new StudentProfile();
         }
     
-
-
-
+        //Gets the student data and displays it
         public void OnGet(int studentID)
         {
             SqlDataReader singleStudent = DBClass.SingleStudentReader(studentID);
@@ -36,6 +34,7 @@ namespace Meeting_Manager.Pages.Profile
             }
         }
 
+        //Allows for edit of student data
         public IActionResult OnPost()
         {
             DBClass.UpdateStudent(studentToUpdate);
