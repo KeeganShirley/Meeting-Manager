@@ -169,28 +169,25 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
-        //public static void UpdateMeeting(MeetingProfile m, int facultyID)
-        //{
-
-        //    string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
-        //    sqlQuery +=  m.MeetingID + ", " + m.MeetingTime + ", " + m.MeetingDate + ", " + facultyID  + ", " + m.StudentID;
-        //    sqlQuery +=  ");";
-
-        //    SqlCommand cmdupdatestudentRead = new SqlCommand();
-        //    cmdupdatestudentRead.Connection = new SqlConnection();
-        //    cmdupdatestudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
-        //    cmdupdatestudentRead.CommandText = sqlQuery;
-        //    cmdupdatestudentRead.Connection.Open();
-        //    _ = cmdupdatestudentRead.ExecuteNonQuery();
-
-
-        //}
-
-        //Query to update meeting info
         public static void UpdateMeeting(MeetingProfile m, int facultyID)
         {
-            
-            m.MeetingID += 1;
+
+            int currentMaxMeetingID = 0;
+
+            // Get the current highest MeetingID value
+            string sqlQueryCount = "SELECT MAX(MeetingID) FROM MEETING";
+            SqlCommand cmdGetMaxMeetingID = new SqlCommand(sqlQueryCount, MeetingManagerDBConnection);
+            cmdGetMaxMeetingID.Connection.Open();
+            SqlDataReader reader = cmdGetMaxMeetingID.ExecuteReader();
+            if (reader.Read())
+            {
+                currentMaxMeetingID = reader.GetInt32(0);
+            }
+            reader.Close();
+            cmdGetMaxMeetingID.Connection.Close();
+
+            // Increment the current highest MeetingID value by 1
+            m.MeetingID = currentMaxMeetingID + 1;
 
             string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
             sqlQuery += "'" + m.MeetingID + "', ";
@@ -198,10 +195,8 @@ namespace Meeting_Manager.Pages.DB
             sqlQuery += "'" + m.MeetingDate + "', ";
             sqlQuery += facultyID + ", ";
             sqlQuery += m.StudentID + ");";
-            //sqlQuery += ");";
 
             SqlCommand cmdUpdateMeeting = new SqlCommand();
-            //cmdUpdateMeeting.Connection = new SqlConnection();
             cmdUpdateMeeting.Connection = MeetingManagerDBConnection;
             cmdUpdateMeeting.Connection.ConnectionString = MeetingManagerDBConnString;
             cmdUpdateMeeting.CommandText = sqlQuery;

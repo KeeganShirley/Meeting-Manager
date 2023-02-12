@@ -30,10 +30,7 @@ namespace Meeting_Manager.Pages.Meeting
                 MeetingUpdate.MeetingID = MeetingID;
                 MeetingUpdate.MeetingTime = singleMeeting["MeetingTime"].ToString();
                 MeetingUpdate.MeetingDate = singleMeeting["MeetingDate"].ToString();
-                //MeetingUpdate.FacultyID = (int)singleMeeting["Faculty"];
                 MeetingUpdate.StudentID = (int)singleMeeting["StudentID"];
-                
-            
                 
             }
             DBClass.MeetingManagerDBConnection.Close();
@@ -43,12 +40,6 @@ namespace Meeting_Manager.Pages.Meeting
         }
 
 
-        //public IActionResult OnPost()
-        //{
-        //    DBClass.UpdateMeeting(MeetingUpdate, FacultyID);
-        //    return RedirectToPage("SignUp_Sheet");
-        //}
-
         public IActionResult OnPost(int FacultyID)
         {
             this.FacultyID = FacultyID;
@@ -56,7 +47,7 @@ namespace Meeting_Manager.Pages.Meeting
 
             DBClass.MeetingManagerDBConnection.Close();
 
-            return RedirectToPage("Student_Profile");
+            return RedirectToPage("Student_Meeting");
         }
 
 
