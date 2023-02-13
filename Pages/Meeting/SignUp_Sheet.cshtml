@@ -69,16 +69,38 @@
     <input type="hidden" asp-for="@Model.MeetingUpdate.MeetingID" />
 
     <label>Meeting Time:</label>
-    <input type="text" asp-for="@Model.MeetingUpdate.MeetingTime" />
+
+        <select>
+            <option value="">@Model.MeetingUpdate.MeetingTime</option> @*Options for meeting times*@
+            <option value="8am">8am</option>
+            <option value="9am">9am</option>
+            <option value="10am">10am</option>
+            <option value="11am">11am</option>
+            <option value="12pm">12pm</option>
+            <option value="1pm">1pm</option>
+            <option value="2pm">2pm</option>
+            <option value="3pm">3pm</option>
+            <option value="4pm">4pm</option>
+            <option value="5pm">5pm</option>
+            <option value="6pm">6pm</option>
+            <option value="7pm">7pm</option>
+            <option value="8pm">8pm</option>
+            
+        </select>
+       
+
     <br />
     <label>Meeting Date:</label>
     <input type="text" asp-for="@Model.MeetingUpdate.MeetingDate" />
+        <button type="button" class="btn btn-primary" onclick="document.getElementById('MeetingUpdate_MeetingDate').value = '1/1'">Populate</button>
     <br />
     <label>FacultyID: </label>
     <input type="text" asp-for="FacultyID" readonly="readonly"/>
+
     <br />
     <label>StudentID</label>
     <input type="text" asp-for="@Model.MeetingUpdate.StudentID" />
+        <button type="button" class="btn btn-primary" onclick="document.getElementById('MeetingUpdate_StudentID').value = '50'">Populate</button>
     
    
     <br /><br />

@@ -14,22 +14,29 @@
 
     <label>Student First Name:</label>
     <input type="text" asp-for="@Model.studentToUpdate.StudentFName" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('studentToUpdate_StudentFName').value = 'Test First Name'">Populate</button>
     <br />
     <label>Student Last Name:</label>
     <input type="text" asp-for="@Model.studentToUpdate.StudentLName" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('studentToUpdate_StudentLName').value = 'Test Last Name'">Populate</button>
     <br />
     <label>Student Email</label>
     <input type="text" asp-for="@Model.studentToUpdate.StuEmail" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('studentToUpdate_StuEmail').value = 'Test@dukes.jmu.edu'">Populate</button>
     <br />
     <label>Student Phone Number</label>
     <input type="text" asp-for="@Model.studentToUpdate.StuPhoneNum" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('studentToUpdate_StuPhoneNum').value = '703-555-5555'">Populate</button>
     <br />
     <label>Group Partner First Name</label>
     <input type="text" asp-for="@Model.studentToUpdate.GroupPartnerFirstName" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('studentToUpdate_GroupPartnerFirstName').value = 'Test Group Partner First'">Populate</button>
     <br />
     <label>Group Partner Last Name</label>
     <input type="text" asp-for="@Model.studentToUpdate.GroupPartnerLastName" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('studentToUpdate_GroupPartnerLastName').value = 'Test Group Partner Last'">Populate</button>
     <br /><br />
     <input type="submit" class="btn btn-success" asp-page="EditStudentProfile" />
     <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+     
 </form>
