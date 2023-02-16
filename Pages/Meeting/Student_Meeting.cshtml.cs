@@ -36,17 +36,38 @@ namespace Meeting_Manager.Pages.Meeting
         DBClass.MeetingManagerDBConnection.Close();
     }
 
-    //Used to take the facultyID selected from the dropdown and carry it to the signup sheet
-    public IActionResult OnPostSingleSelect()
+        //Used to take the facultyID selected from the dropdown and carry it to the signup sheet
+        //public IActionResult OnPostSingleSelect()
+        //    {
+        //        string SelectedFac = Request.Form["FacultySearch"].ToString();
+
+        //        int index = SelectedFac.IndexOf(')');
+        //        String shortened = SelectedFac.Substring(0, index);
+        //        return RedirectToPage("./OfficeHour_SignUp", new { FacultyID = shortened.ToString(), Faculty = Convert.ToInt32(RouteData.Values["FacultyID"]) });
+        //        DBClass.MeetingManagerDBConnection.Close();
+
+        //    }
+        public IActionResult OnPostSingleSelect(string meetingType)
         {
-            string SelectedFac = Request.Form["FacultySearch"].ToString();
+            string selectedFac = Request.Form["FacultySearch"].ToString();
 
-            int index = SelectedFac.IndexOf(')');
-            String shortened = SelectedFac.Substring(0, index);
-            return RedirectToPage("./OfficeHour_SignUp", new { FacultyID = shortened.ToString(), Faculty = Convert.ToInt32(RouteData.Values["FacultyID"]) });
-            DBClass.MeetingManagerDBConnection.Close();
+            int index = selectedFac.IndexOf(')');
+            String shortened = selectedFac.Substring(0, index);
 
+            if (meetingType == "Meeting")
+            {
+                return RedirectToPage("./Meeting_SignUp", new { FacultyID = shortened.ToString(), Faculty = Convert.ToInt32(RouteData.Values["FacultyID"]) });
+            }
+            else if (meetingType == "Office Hour")
+            {
+                return RedirectToPage("./OfficeHours_SignUp", new { FacultyID = shortened.ToString(), Faculty = Convert.ToInt32(RouteData.Values["FacultyID"]) });
+            }
+            else
+            {
+                return (Page());
+            }
         }
-}
+
+    }
 
 }
