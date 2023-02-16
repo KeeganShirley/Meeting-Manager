@@ -58,9 +58,9 @@ namespace Meeting_Manager.Pages.Meeting
             {
                 return RedirectToPage("./Meeting_SignUp", new { FacultyID = shortened.ToString(), Faculty = Convert.ToInt32(RouteData.Values["FacultyID"]) });
             }
-            else if (meetingType == "Office Hour")
+            else if (meetingType == "OfficeHour")
             {
-                return RedirectToPage("./OfficeHours_SignUp", new { FacultyID = shortened.ToString(), Faculty = Convert.ToInt32(RouteData.Values["FacultyID"]) });
+                return RedirectToPage("./OfficeHour_SignUp", new { FacultyID = shortened.ToString(), Faculty = Convert.ToInt32(RouteData.Values["FacultyID"]) });
             }
             else
             {
