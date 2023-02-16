@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace Meeting_Manager.Pages.Meeting
 {
-    public class SignUp_SheetModel : PageModel
+    public class OfficeHour_SignUpModel : PageModel
     {
         public int FacultyID { get; set; }
 
@@ -14,7 +14,7 @@ namespace Meeting_Manager.Pages.Meeting
         public MeetingProfile MeetingUpdate { get; set; }
                 
         //Constructor
-        public SignUp_SheetModel()
+        public OfficeHour_SignUpModel()
         {
             MeetingUpdate = new MeetingProfile();
         }

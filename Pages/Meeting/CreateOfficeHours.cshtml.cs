@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Meeting_Manager.Pages.Meeting
 {
-    public class FacultySignUp_SheetModel : PageModel
+    public class CreateOfficeHoursModel : PageModel
     {
         public void OnGet()
         {

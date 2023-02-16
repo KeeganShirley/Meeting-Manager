@@ -30,7 +30,7 @@ namespace Meeting_Manager.Pages.Profile
                 facultyToUpdate.FacultyLName = singleFaculty["FacultyLName"].ToString();
                 facultyToUpdate.FacultyEmail = singleFaculty["FacultyEmail"].ToString();
                 facultyToUpdate.OfficePhoneNum = singleFaculty["OfficePhoneNum"].ToString();
-                facultyToUpdate.OfficeLocation = singleFaculty["OfficeLoc"].ToString();
+                facultyToUpdate.OfficeLocation = singleFaculty["OfficeLocation"].ToString();
                 facultyToUpdate.FacultyDescription = singleFaculty["FacultyDescription"].ToString();
                 facultyToUpdate.FacultyClass1 = singleFaculty["FacultyClass1"].ToString();
                 facultyToUpdate.FacultyClass2 = singleFaculty["FacultyClass2"].ToString();

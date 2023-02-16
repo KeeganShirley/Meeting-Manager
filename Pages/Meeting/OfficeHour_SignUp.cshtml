@@ -1,5 +1,5 @@
 ﻿@page
-@model Meeting_Manager.Pages.Meeting.SignUp_SheetModel
+@model Meeting_Manager.Pages.Meeting.OfficeHour_SignUpModel
 @{
 }
 
@@ -65,7 +65,7 @@
 </head>
 <body> 
     @*Signup sheet body*@
-              <form asp-page="SignUp_Sheet">
+              <form asp-page="OfficeHour_SignUp">
     <input type="hidden" asp-for="@Model.MeetingUpdate.MeetingID" />
 
     <label>Meeting Time:</label>
@@ -104,7 +104,7 @@
     
    
     <br /><br />
-    <input type="submit" class="btn btn-success" asp-page="SignUp_Sheet" />
+    <input type="submit" class="btn btn-success" asp-page="OfficeHour_SignUp" />
     <a asp-page="Index" class="btn btn-secondary">Cancel</a>
 </form>
 

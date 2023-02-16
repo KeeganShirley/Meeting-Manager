@@ -43,7 +43,7 @@ namespace Meeting_Manager.Pages.Meeting
 
             int index = SelectedFac.IndexOf(')');
             String shortened = SelectedFac.Substring(0, index);
-            return RedirectToPage("./SignUp_Sheet", new { FacultyID = shortened.ToString(), Faculty = Convert.ToInt32(RouteData.Values["FacultyID"]) });
+            return RedirectToPage("./OfficeHour_SignUp", new { FacultyID = shortened.ToString(), Faculty = Convert.ToInt32(RouteData.Values["FacultyID"]) });
             DBClass.MeetingManagerDBConnection.Close();
 
         }
