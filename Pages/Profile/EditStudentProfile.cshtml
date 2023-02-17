@@ -6,9 +6,6 @@
 
 }
 
-
-
-
 <form asp-page="EditStudentProfile">
     <input type="hidden" asp-for="@Model.studentToUpdate.StudentID" />
 
@@ -35,8 +32,12 @@
     <label>Group Partner Last Name</label>
     <input type="text" asp-for="@Model.studentToUpdate.GroupPartnerLastName" />
     <button type="button" class="btn btn-primary" onclick="document.getElementById('studentToUpdate_GroupPartnerLastName').value = 'Test Group Partner Last'">Populate</button>
+    <br />
+    <label>Group Partner ID</label>
+    <input type="text" asp-for="@Model.studentToUpdate.GroupPartnerID" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('studentToUpdate_GroupPartnerID').value = '11235'">Populate</button>
     <br /><br />
     <input type="submit" class="btn btn-success" asp-page="EditStudentProfile" />
-    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+    <a asp-page="Student_profile" class="btn btn-secondary">Cancel</a>
      
 </form>

@@ -10,46 +10,53 @@
     <input type="text" asp-for="@Model.facultyToUpdate.FacultyFName" />
     <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_FacultyFName').value = 'Test First Name'">Populate</button>
     <br />
+
     <label>Faculty Last Name:</label>
     <input type="text" asp-for="@Model.facultyToUpdate.FacultyLName" />
     <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_FacultyLName').value = 'Test Last Name'">Populate</button>
     <br />
+
     <label>Faculty Email</label>
     <input type="text" asp-for="@Model.facultyToUpdate.FacultyEmail" />
     <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_FacultyEmail').value = 'TestProf@dukes.jmu.edu'">Populate</button>
     <br />
+
     <label>Office Phone Number</label>
     <input type="text" asp-for="@Model.facultyToUpdate.OfficePhoneNum" />
     <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_OfficePhoneNum').value = '703-444-4444'">Populate</button>
     <br />
+
     <label>Office Location</label>
     <input type="text" asp-for="@Model.facultyToUpdate.OfficeLocation" />
     <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_OfficeLocation').value = '5565 Electric Avenue'">Populate</button>
     <br />
-    <label>Faculty Description</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.FacultyDescription"/>
-    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_FacultyDescription').value = 'MoWed: 12:45am-2:45pm    TuThu: 9am-12pm'">Populate</button>
+
+    <label>Class 1</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.Class1" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Class1').value = 'CIS484'">Populate</button>
     <br />
-    <label>Faculty Class 1</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.FacultyClass1" />
-    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_FacultyClass1').value = 'CIS 301'">Populate</button>
+    <label>Class 2</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.Class2" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Class2').value = 'CIS484'">Populate</button>
     <br />
-    <label>Faculty Class 2</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.FacultyClass2" />
-    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_FacultyClass2').value = 'CIS 454'">Populate</button>
+    <label>Class 3</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.Class3" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Class3').value = 'CIS484'">Populate</button>
     <br />
-    <label>Faculty Class 3</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.FacultyClass3" />
-    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_FacultyClass3').value = 'CIS 464'">Populate</button>
+    <label>Class 4</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.Class4" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Class4').value = 'CIS484'">Populate</button>
     <br />
-    <label>Faculty Class 4</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.FacultyClass4" />
-    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_FacultyClass4').value = 'CIS 331'">Populate</button>
+    <label>Class 5</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.Class5" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Class5').value = 'CIS484'">Populate</button>
     <br />
-    <label>Faculty Class 5</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.FacultyClass5" />
-    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_FacultyClass5').value = 'CIS 484'">Populate</button>
+    <br />
+    <label>Availability</label>
+    <input type="text" asp-for="@Model.facultyToUpdate.Availability" />
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Availability').value = 'MoWed: 12:45am-2:45PM'">Populate</button>
+
     <br /><br />
     <input type="submit" class="btn btn-success" asp-page="EditFacultyProfile" />
-    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+    <a asp-page="Faculty_Profile" class="btn btn-secondary">Cancel</a>
 </form>

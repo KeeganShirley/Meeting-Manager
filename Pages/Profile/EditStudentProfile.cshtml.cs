@@ -30,7 +30,7 @@ namespace Meeting_Manager.Pages.Profile
                 studentToUpdate.StuPhoneNum = singleStudent["StuPhoneNum"].ToString();
                 studentToUpdate.GroupPartnerFirstName = singleStudent["GroupPartnerFirstName"].ToString();
                 studentToUpdate.GroupPartnerLastName = singleStudent["GroupPartnerLastName"].ToString();
-
+                studentToUpdate.GroupPartnerID = (int)singleStudent["GroupPartnerID"];
             }
         }
 

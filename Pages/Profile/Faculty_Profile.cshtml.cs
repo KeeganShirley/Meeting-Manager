@@ -19,7 +19,7 @@ namespace Meeting_Manager.Pages.Profile
         //Gets the faculty data and displays it
         public void OnGet()
         {
-            SqlDataReader facultyReader = DBClass.facultyReader();
+            SqlDataReader facultyReader = DBClass.SingleFacultyReader(1);
 
             while (facultyReader.Read())
             {
@@ -30,17 +30,17 @@ namespace Meeting_Manager.Pages.Profile
                     FacultyLName = facultyReader["FacultyLName"].ToString(),
                     FacultyEmail = facultyReader["FacultyEmail"].ToString(),
                     OfficePhoneNum = facultyReader["OfficePhoneNum"].ToString(),
-                    OfficeLocation = facultyReader["OfficeLocation"].ToString(),
-                    FacultyDescription = facultyReader["FacultyDescription"].ToString(),
-                    FacultyClass1 = facultyReader["FacultyClass1"].ToString(),
-                    FacultyClass2 = facultyReader["FacultyClass2"].ToString(),
-                    FacultyClass3 = facultyReader["FacultyClass3"].ToString(),
-                    FacultyClass4 = facultyReader["FacultyClass4"].ToString(),
-                    FacultyClass5 = facultyReader["FacultyClass5"].ToString()
-                });
+                    OfficeLocation = facultyReader["OfficeLoc"].ToString(),
+                    Availability = facultyReader["Availability"].ToString(),
+                    Class1 = facultyReader["Class1"].ToString(),
+                    Class2 = facultyReader["Class2"].ToString(),
+                    Class3 = facultyReader["Class3"].ToString(),
+                    Class4 = facultyReader["Class4"].ToString(),
+                    Class5 = facultyReader["Class5"].ToString()
+
+                }) ;
 
                 }
-
             DBClass.MeetingManagerDBConnection.Close();
         }
         

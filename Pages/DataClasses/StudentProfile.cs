@@ -9,8 +9,8 @@
         public String? StuPhoneNum { get; set; }
         public String? GroupPartnerFirstName { get; set; }
         public String? GroupPartnerLastName { get; set; }
-        
-
+        public int GroupPartnerID { get; set; }
+   
 
     }
 }

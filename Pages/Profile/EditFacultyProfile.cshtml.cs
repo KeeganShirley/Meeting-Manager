@@ -21,7 +21,7 @@ namespace Meeting_Manager.Pages.Profile
         //Gets the faculty data and displays it
         public void OnGet(int facultyID)
         {
-            SqlDataReader singleFaculty = DBClass.SingleFacultyReader(facultyID);
+            SqlDataReader singleFaculty = DBClass.facultyClassReader(facultyID);
 
             while (singleFaculty.Read())
             {
@@ -30,13 +30,14 @@ namespace Meeting_Manager.Pages.Profile
                 facultyToUpdate.FacultyLName = singleFaculty["FacultyLName"].ToString();
                 facultyToUpdate.FacultyEmail = singleFaculty["FacultyEmail"].ToString();
                 facultyToUpdate.OfficePhoneNum = singleFaculty["OfficePhoneNum"].ToString();
-                facultyToUpdate.OfficeLocation = singleFaculty["OfficeLocation"].ToString();
-                facultyToUpdate.FacultyDescription = singleFaculty["FacultyDescription"].ToString();
-                facultyToUpdate.FacultyClass1 = singleFaculty["FacultyClass1"].ToString();
-                facultyToUpdate.FacultyClass2 = singleFaculty["FacultyClass2"].ToString();
-                facultyToUpdate.FacultyClass3 = singleFaculty["FacultyClass3"].ToString();
-                facultyToUpdate.FacultyClass4 = singleFaculty["FacultyClass4"].ToString();
-                facultyToUpdate.FacultyClass5 = singleFaculty["FacultyClass5"].ToString();
+                facultyToUpdate.OfficeLocation = singleFaculty["OfficeLoc"].ToString();
+                facultyToUpdate.Availability = singleFaculty["Availability"].ToString();
+                facultyToUpdate.Class1 = singleFaculty["Class1"].ToString();
+                facultyToUpdate.Class2 = singleFaculty["Class2"].ToString();
+                facultyToUpdate.Class3 = singleFaculty["Class3"].ToString();
+                facultyToUpdate.Class4 = singleFaculty["Class4"].ToString();
+                facultyToUpdate.Class5 = singleFaculty["Class5"].ToString();
+
 
             }
         }

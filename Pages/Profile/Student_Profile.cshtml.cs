@@ -36,8 +36,8 @@ namespace Meeting_Manager.Pages.Profile
                 StuEmail = studentReader["StuEmail"].ToString(),
                 StuPhoneNum = studentReader["StuPhoneNum"].ToString(),
                 GroupPartnerFirstName = studentReader["GroupPartnerFirstName"].ToString(),
-                GroupPartnerLastName = studentReader["GroupPartnerLastName"].ToString()
-
+                GroupPartnerLastName = studentReader["GroupPartnerLastName"].ToString(),
+                GroupPartnerID = Int32.Parse(studentReader["GroupPartnerID"].ToString())
             });            
             }
 

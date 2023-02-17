@@ -10,7 +10,7 @@ namespace Meeting_Manager.Pages.DB
         public static SqlConnection MeetingManagerDBConnection = new SqlConnection();
 
         // Connection String
-        private static readonly String? MeetingManagerDBConnString = "Server=Localhost;Database=OfficeHours;Trusted_Connection=True";
+        private static readonly String? MeetingManagerDBConnString = "Server=Localhost;Database=Lab2;Trusted_Connection=True";
 
         public static object MeetingManagerDBConection { get; internal set; }
 
@@ -40,6 +40,19 @@ namespace Meeting_Manager.Pages.DB
 
             SqlDataReader tempReader = cmdfacultyRead.ExecuteReader();
 
+            return tempReader;
+        }
+
+        public static SqlDataReader facultyClassReader(int facultyID)
+        {
+            SqlCommand cmdfacultyClassRead = new SqlCommand();
+            cmdfacultyClassRead.Connection = MeetingManagerDBConnection;
+            cmdfacultyClassRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdfacultyClassRead.CommandText = "SELECT * FROM Faculty;";
+
+            cmdfacultyClassRead.Connection.Open();
+
+            SqlDataReader tempReader = cmdfacultyClassRead.ExecuteReader();
             return tempReader;
         }
 
@@ -83,10 +96,11 @@ namespace Meeting_Manager.Pages.DB
                 sqlQuery += "StuEmail='" + s.StuEmail + "',";
                 sqlQuery += "StuPhoneNum='" + s.StuPhoneNum + "',";
                 sqlQuery += "GroupPartnerFirstName='" + s.GroupPartnerFirstName + "',";
-                sqlQuery += "GroupPartnerLastName='" + s.GroupPartnerLastName + "' WHERE StudentID =" + s.StudentID;
+                sqlQuery += "GroupPartnerLastName='" + s.GroupPartnerLastName + "',";
+                sqlQuery += "GroupPartnerID=" + s.GroupPartnerID + " WHERE StudentID =" + s.StudentID;
 
 
-                SqlCommand cmdupdatestudentRead = new SqlCommand();
+            SqlCommand cmdupdatestudentRead = new SqlCommand();
             cmdupdatestudentRead.Connection = new SqlConnection();
             cmdupdatestudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
             cmdupdatestudentRead.CommandText = sqlQuery;
@@ -102,7 +116,7 @@ namespace Meeting_Manager.Pages.DB
             SqlCommand cmdfacultyRead = new SqlCommand();
             cmdfacultyRead.Connection = new SqlConnection();
             cmdfacultyRead.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdfacultyRead.CommandText = "SELECT * FROM FACULTY WHERE FacultyID = " + FacultyID;
+            cmdfacultyRead.CommandText = "SELECT * from Faculty WHERE FacultyID = " + FacultyID;
             cmdfacultyRead.Connection.Open();
             SqlDataReader tempReader = cmdfacultyRead.ExecuteReader();
 
@@ -112,21 +126,18 @@ namespace Meeting_Manager.Pages.DB
         //This is used to update faculty information within the FACULTY Table
         public static void UpdateFaculty(FacultyProfile f)
         {
-
             string sqlQuery = "UPDATE FACULTY SET ";
-            sqlQuery += "FacultyID='" + f.FacultyID + "',";
-            sqlQuery += "FacultyFName='" + f.FacultyFName + "',";
-            sqlQuery += "FacultyLName='" + f.FacultyLName + "',";
-            sqlQuery += "FacultyEmail='" + f.FacultyEmail + "',";
-            sqlQuery += "OfficePhoneNum='" + f.OfficePhoneNum + "',";
-            sqlQuery += "OfficeLoc='" + f.OfficeLocation + "',";
-            sqlQuery += "FacultyDescription='" + f.FacultyDescription + "',";
-            sqlQuery += "FacultyClass1='" + f.FacultyClass1 + "',";
-            sqlQuery += "FacultyClass2='" + f.FacultyClass2 + "',";
-            sqlQuery += "FacultyClass3='" + f.FacultyClass3 + "',";
-            sqlQuery += "FacultyClass4='" + f.FacultyClass4 + "',";
-            sqlQuery += "FacultyClass5='" + f.FacultyClass5 + "' WHERE FACULTYID =" + f.FacultyID;
-
+            sqlQuery += "FacultyFName = '" + f.FacultyFName + "', ";
+            sqlQuery += "FacultyLName = '" + f.FacultyLName + "', ";
+            sqlQuery += "FacultyEmail = '" + f.FacultyEmail + "', ";
+            sqlQuery += "OfficePhoneNum = '" + f.OfficePhoneNum + "', ";
+            sqlQuery += "OfficeLoc = '" + f.OfficeLocation + "', ";
+            sqlQuery += "Availability = '" + f.Availability + "', ";
+            sqlQuery += "Class1 = '" + f.Class1 + "', ";
+            sqlQuery += "Class2 = '" + f.Class2 + "', ";
+            sqlQuery += "Class3 = '" + f.Class3 + "', ";
+            sqlQuery += "Class4 = '" + f.Class4 + "', ";
+            sqlQuery += "Class5 = '" + f.Class5 + "' WHERE FacultyID = " + f.FacultyID;
 
             SqlCommand cmdupdatefacultyRead = new SqlCommand();
             cmdupdatefacultyRead.Connection = new SqlConnection();
