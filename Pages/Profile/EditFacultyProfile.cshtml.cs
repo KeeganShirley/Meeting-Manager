@@ -9,13 +9,18 @@ namespace Meeting_Manager.Pages.Profile
 {
     public class EditFacultyProfileModel : PageModel
     {
+        public List<Class> ClassList { get; set; }
 
         [BindProperty]
         public FacultyProfile facultyToUpdate { get; set; }
 
+        [BindProperty]
+        public Class classToAdd { get; set; }
+
         public EditFacultyProfileModel() 
         {
             facultyToUpdate= new FacultyProfile();
+            ClassList = new List<Class>();
         }
 
         //Gets the faculty data and displays it
@@ -38,8 +43,20 @@ namespace Meeting_Manager.Pages.Profile
                 facultyToUpdate.Class4 = singleFaculty["Class4"].ToString();
                 facultyToUpdate.Class5 = singleFaculty["Class5"].ToString();
 
-
             }
+
+            DBClass.MeetingManagerDBConnection.Close();
+
+            SqlDataReader classes = DBClass.ClassReader();
+
+            while (classes.Read())
+            {
+                ClassList.Add(new Class
+                { ClassID = classes["CLASSID"].ToString() });
+            }
+            DBClass.MeetingManagerDBConnection.Close();
+
+
         }
 
         //Allows for edit of faculty data

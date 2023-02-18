@@ -149,6 +149,20 @@ namespace Meeting_Manager.Pages.DB
 
         }
 
+        public static SqlDataReader ClassReader()
+        {
+            SqlCommand cmdClassRead = new SqlCommand();
+
+            cmdClassRead.Connection = MeetingManagerDBConnection;
+            cmdClassRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdClassRead.CommandText = "SELECT ClassID FROM CLASS";
+
+            cmdClassRead.Connection.Open();
+
+            SqlDataReader tempReader = cmdClassRead.ExecuteReader();
+            return tempReader;
+        }
+
         public static SqlDataReader SingleMeetingReader(int MeetingID)
         {
             SqlCommand cmdMeetingRead = new SqlCommand();

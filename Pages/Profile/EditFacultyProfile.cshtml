@@ -1,6 +1,15 @@
 ﻿@page
 @model Meeting_Manager.Pages.Profile.EditFacultyProfileModel
 @{
+    List<SelectListItem> classSelectList = new List<SelectListItem>(); // Convert list of classes from model to selectlist
+    foreach (var c in Model.ClassList)
+    {
+        classSelectList.Add(new SelectListItem
+                {
+                    Text = c.ClassID,
+                    Value = c.ClassID
+                });
+    }
 }
 
 <form asp-page="EditFacultyProfile">
@@ -32,23 +41,23 @@
     <br />
 
     <label>Class 1</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.Class1" />
+    <select asp-for="@Model.facultyToUpdate.Class1" asp-items="@classSelectList"></select>
     <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Class1').value = 'CIS484'">Populate</button>
     <br />
     <label>Class 2</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.Class2" />
+    <select asp-for="@Model.facultyToUpdate.Class2" asp-items="@classSelectList"></select>
     <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Class2').value = 'CIS484'">Populate</button>
     <br />
     <label>Class 3</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.Class3" />
+    <select asp-for="@Model.facultyToUpdate.Class3" asp-items="@classSelectList"></select>
     <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Class3').value = 'CIS484'">Populate</button>
     <br />
     <label>Class 4</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.Class4" />
+    <select asp-for="@Model.facultyToUpdate.Class4" asp-items="@classSelectList"></select>
     <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Class4').value = 'CIS484'">Populate</button>
     <br />
     <label>Class 5</label>
-    <input type="text" asp-for="@Model.facultyToUpdate.Class5" />
+    <select asp-for="@Model.facultyToUpdate.Class5" asp-items="@classSelectList"></select>
     <button type="button" class="btn btn-primary" onclick="document.getElementById('facultyToUpdate_Class5').value = 'CIS484'">Populate</button>
     <br />
     <br />
