@@ -1,6 +1,9 @@
 ﻿using Meeting_Manager.Pages.DataClasses;
+using Meeting_Manager.Pages.Login;
 using Meeting_Manager.Pages.Profile;
+using Microsoft.AspNetCore.Identity;
 using System.Data.SqlClient;
+using System.Reflection.Emit;
 
 namespace Meeting_Manager.Pages.DB
 {
@@ -12,7 +15,7 @@ namespace Meeting_Manager.Pages.DB
         // Connection String
         private static readonly String? MeetingManagerDBConnString = "Server=Localhost;Database=Lab2;Trusted_Connection=True";
 
-        public static object MeetingManagerDBConection { get; internal set; }
+        public static object? MeetingManagerDBConection { get; internal set; }
 
         public static SqlDataReader Reader()
         {
@@ -221,5 +224,42 @@ namespace Meeting_Manager.Pages.DB
 
         }
 
+        public static int LoginQuery(string loginQuery)
+        {
+            // This method expects to receive an SQL SELECT
+            // query that uses the COUNT command.
+            SqlCommand cmdLogin = new SqlCommand();
+            cmdLogin.Connection = MeetingManagerDBConnection;
+            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdLogin.CommandText = loginQuery;
+            cmdLogin.Connection.Open();
+            // ExecuteScalar() returns back data type Object
+            // Use a typecast to convert this to an int.
+            // Method returns first column of first row.
+            int rowCount = (int)cmdLogin.ExecuteScalar();
+            return rowCount;
+        }
+        public static int SecureLogin(string Username, string Password)
+        {
+            string loginQuery =
+            "SELECT COUNT(*) FROM Credentials where Username = @Username and Password = @Password";
+        SqlCommand cmdLogin = new SqlCommand();
+            cmdLogin.Connection = MeetingManagerDBConnection;
+            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdLogin.CommandText = loginQuery;
+            cmdLogin.Parameters.AddWithValue("@Username", Username);
+            cmdLogin.Parameters.AddWithValue("@Password", Password);
+            cmdLogin.Connection.Open();
+            // ExecuteScalar() returns back data type Object
+            // Use a typecast to convert this to an int.
+            // Method returns first column of first row.
+            int rowCount = (int)cmdLogin.ExecuteScalar();
+            return rowCount;
+        }
+
+
     }
+    
 }
+   
+
