@@ -3,6 +3,10 @@
 @{
 }
 
+<div class="message" style="font-size: 36px; font-weight: bold; text-align: center;">Sign in: 
+<div class="message" style="font-size: 36px; font-weight: ; text-align: center;">Please Enter Your Credentials Below: 
+<br />
+
 <form asp-page="DBLogin">
     <input asp-for="Username" class="form-control" placeholder="Enter Username" />
     <br />
@@ -16,6 +20,7 @@
     if (HttpContext.Session.GetString("username") != null)
     {
         <p class="text-success">@ViewData["LoginMessage"]</p>
+              
     }
     else
     {

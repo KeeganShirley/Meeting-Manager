@@ -26,6 +26,9 @@ namespace Meeting_Manager.Pages.Login
             {
                 HttpContext.Session.SetString("username", Username);
                 ViewData["LoginMessage"] = "Login Successful!";
+                DBClass.MeetingManagerDBConnection.Close();
+                return RedirectToPage("/Profile/Student_Profile");
+
 
             }
             else
