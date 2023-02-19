@@ -181,30 +181,80 @@ namespace Meeting_Manager.Pages.DB
         }
 
         //This is used to update the meeting table with signup sheet information
+        //public static void UpdateMeeting(MeetingProfile m, int facultyID)
+        //{
+
+        //    int currentMaxMeetingID = 0;
+
+        //    // Get the highest MeetingID value in the DB
+        //    string sqlQueryCount = "SELECT MAX(MeetingID) FROM MEETING";
+        //    SqlCommand cmdGetMaxMeetingID = new SqlCommand(sqlQueryCount, MeetingManagerDBConnection);
+        //    cmdGetMaxMeetingID.Connection.Open();
+        //    SqlDataReader reader = cmdGetMaxMeetingID.ExecuteReader();
+
+        //    if (reader.Read())
+        //    {
+        //        currentMaxMeetingID = reader.GetInt32(0);
+        //    }
+
+        //    reader.Close();
+
+        //    cmdGetMaxMeetingID.Connection.Close();
+
+        //    // Increment the current highest MeetingID value by 1
+        //    m.MeetingID = currentMaxMeetingID + 1;
+
+        //    //Insert the data from the SignUp sheet into the Meeting table
+        //    string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
+        //    sqlQuery += "'" + m.MeetingID + "', ";
+        //    sqlQuery += "'" + m.MeetingTime + "', ";
+        //    sqlQuery += "'" + m.MeetingDate + "', ";
+        //    sqlQuery += facultyID + ", ";
+        //    sqlQuery += m.StudentID + ");";
+
+        //    SqlCommand cmdUpdateMeeting = new SqlCommand();
+        //    cmdUpdateMeeting.Connection = MeetingManagerDBConnection;
+        //    cmdUpdateMeeting.Connection.ConnectionString = MeetingManagerDBConnString;
+        //    cmdUpdateMeeting.CommandText = sqlQuery;
+
+        //    cmdUpdateMeeting.Connection.Open();
+
+        //    cmdUpdateMeeting.ExecuteNonQuery();
+
+
+        //}
+
         public static void UpdateMeeting(MeetingProfile m, int facultyID)
         {
 
+            string sqlQueryCount = "SELECT COUNT(*) FROM MEETING";
+            SqlCommand cmdGetMeetingCount = new SqlCommand(sqlQueryCount, MeetingManagerDBConnection);
+            cmdGetMeetingCount.Connection.Open();
+            int meetingCount = (int)cmdGetMeetingCount.ExecuteScalar();
+            cmdGetMeetingCount.Connection.Close();
+
             int currentMaxMeetingID = 0;
-
-            // Get the highest MeetingID value in the DB
-            string sqlQueryCount = "SELECT MAX(MeetingID) FROM MEETING";
-            SqlCommand cmdGetMaxMeetingID = new SqlCommand(sqlQueryCount, MeetingManagerDBConnection);
-            cmdGetMaxMeetingID.Connection.Open();
-            SqlDataReader reader = cmdGetMaxMeetingID.ExecuteReader();
-
-            if (reader.Read())
+            if (meetingCount > 0)
             {
-                currentMaxMeetingID = reader.GetInt32(0);
+                // Get the highest MeetingID value in the DB
+                string sqlQueryMax = "SELECT MAX(MeetingID) FROM MEETING";
+                SqlCommand cmdGetMaxMeetingID = new SqlCommand(sqlQueryMax, MeetingManagerDBConnection);
+                cmdGetMaxMeetingID.Connection.Open();
+                SqlDataReader reader = cmdGetMaxMeetingID.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    currentMaxMeetingID = reader.GetInt32(0);
+                }
+
+                reader.Close();
+                cmdGetMaxMeetingID.Connection.Close();
             }
-
-            reader.Close();
-
-            cmdGetMaxMeetingID.Connection.Close();
 
             // Increment the current highest MeetingID value by 1
             m.MeetingID = currentMaxMeetingID + 1;
 
-            //Insert the data from the SignUp sheet into the Meeting table
+            // Insert the data from the SignUp sheet into the Meeting table
             string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
             sqlQuery += "'" + m.MeetingID + "', ";
             sqlQuery += "'" + m.MeetingTime + "', ";
@@ -218,13 +268,11 @@ namespace Meeting_Manager.Pages.DB
             cmdUpdateMeeting.CommandText = sqlQuery;
 
             cmdUpdateMeeting.Connection.Open();
-
             cmdUpdateMeeting.ExecuteNonQuery();
-
-
+            cmdUpdateMeeting.Connection.Close();
         }
 
-        public static int LoginQuery(string loginQuery)
+            public static int LoginQuery(string loginQuery)
         {
             // This method expects to receive an SQL SELECT
             // query that uses the COUNT command.
