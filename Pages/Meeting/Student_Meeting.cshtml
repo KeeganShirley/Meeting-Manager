@@ -1,46 +1,4 @@
-﻿@*@page
-@model Meeting_Manager.Pages.Meeting.Student_MeetingModel
-@{
-}
-
-<body>
-    <section>
-        <nav>
-            <h1 style="margin-left: 60px">Faculty Search</h1>
-            <form asp-page-handler="SingleSelect" method="post">
-                <select name="FacultySearch" class="form-select" aria-label="Default select example" required style="margin-left: 60px">
-                    <option selected>Search Faculty Members</option>
-                    @{
-                        foreach (var Faculty in Model.FacultyList)
-                        {
-                        //<option value="@Faculty.FacultyID">(@Faculty.FacultyID) @Faculty.FacultyFName @Faculty.FacultyLName </option>\
-                                    <option>@Faculty.FacultyID) @Faculty.FacultyFName  @Faculty.FacultyLName</option>
-                        }
-                    }
-                </select>
-                <div class="invalid-feedback">
-                    Please select a Professor to meet with:
-                </div>
-                <br />
-                <button class="btn btn-primary" type="submit" style="margin-left: 60px">Search</button>
-                <button style="background-color: white;"><a href="/Meeting/Meeting_SignUp">Meeting Sign Up</a></button></button>
-            </form>
-        </nav>
-    </section>
-
-</body>
-
-<div style="width: 175px; height: 100%; position: fixed; left: 0; top: 0; overflow-y: scroll; background-color: #CBC3E3;">
-    <ul>
-        <li><button style="background-color: white;"><a href="/Meeting/Student_Meeting">My Meetings</a></button></li>
-        <li><button style="background-color: white;"><a href="/Profile/Student_Profile">My Profile</a></button></button></li>
-        <li><button style="background-color: white;"><a href="/Queue/Student_Queue">My Queue</a></button></button></li>
-
-    </ul>
-
-</div>*@
-
-@page
+﻿@page
 @model Meeting_Manager.Pages.Meeting.Student_MeetingModel
 @{
 }
@@ -57,7 +15,7 @@
                     @{
                         foreach (var Faculty in Model.FacultyList)
                         {
-                            <option>@Faculty.FacultyID) @Faculty.FacultyFName  @Faculty.FacultyLName</option>
+                            <option value="@Faculty.FacultyFName @Faculty.FacultyLName @Faculty.FacultyID">@Faculty.FacultyFName @Faculty.FacultyLName</option>
                         }
                     }
                 </select>
