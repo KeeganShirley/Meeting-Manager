@@ -8,10 +8,14 @@ namespace Meeting_Manager.Pages.Meeting
 {
     public class OfficeHour_SignUpModel : PageModel
     {
+        [BindProperty]
         public int FacultyID { get; set; }
 
         [BindProperty]
         public MeetingProfile MeetingUpdate { get; set; }
+
+        [BindProperty]
+        public int StudentID { get; set; }
                 
         //Constructor
         public OfficeHour_SignUpModel()
@@ -21,10 +25,11 @@ namespace Meeting_Manager.Pages.Meeting
 
 
         //On Get method to take facultyID from the drop down and begin a signup sheet
-        public void OnGet(int MeetingID, int FacultyID)
+        public void OnGet(int MeetingID, int FacultyID, int StudentID)
         {
             //Grab the FacultyID from the drop down menu
             this.FacultyID = FacultyID;
+            //this.StudentID = StudentID;
 
             SqlDataReader singleMeeting = DBClass.SingleMeetingReader(MeetingID);
 
@@ -33,7 +38,7 @@ namespace Meeting_Manager.Pages.Meeting
                 MeetingUpdate.MeetingID = MeetingID;
                 MeetingUpdate.MeetingTime = singleMeeting["MeetingTime"].ToString();
                 MeetingUpdate.MeetingDate = singleMeeting["MeetingDate"].ToString();
-                MeetingUpdate.StudentID = (int)singleMeeting["StudentID"];
+                //MeetingUpdate.StudentID = (int)singleMeeting["StudentID"];
                 
             }
             DBClass.MeetingManagerDBConnection.Close();
@@ -43,13 +48,13 @@ namespace Meeting_Manager.Pages.Meeting
         }
 
         //Once the signup page is filled out and the "submit" button has been pressed then this will redirect the student to the Student Meeting page
-        public IActionResult OnPost(int FacultyID)
+        public IActionResult OnPost(int FacultyID, int StudentID)
         {
             //Same functionality as this expression up above
             this.FacultyID = FacultyID;
 
             //This will actually send the data into the DB
-            DBClass.UpdateMeeting(MeetingUpdate, FacultyID);
+            DBClass.QueueUpdate(StudentID, FacultyID);
 
             DBClass.MeetingManagerDBConnection.Close();
 

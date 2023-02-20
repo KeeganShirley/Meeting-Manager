@@ -306,8 +306,37 @@ namespace Meeting_Manager.Pages.DB
         }
 
 
-    }
+        public static SqlDataReader QueueReader(int StudentID, int FacultyID)
+        {
+            SqlCommand cmdQueueRead = new SqlCommand();
+
+            cmdQueueRead.Connection = MeetingManagerDBConnection;
+            cmdQueueRead.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdQueueRead.CommandText = "SELECT * FROM QUEUE, FACULTY WHERE QUEUE.FACULTYID = " + FacultyID + " AND STUDENTID = " + StudentID;
+
+            cmdQueueRead.Connection.Open();
+
+            SqlDataReader tempReader = cmdQueueRead.ExecuteReader();
+            return tempReader;
+        }
+            
+    
+        public static void QueueUpdate(int StudentID, int FacultyID)
+        {
+            SqlCommand cmdQueueUpdate = new SqlCommand();
+
+            cmdQueueUpdate.Connection = MeetingManagerDBConnection;
+            cmdQueueUpdate.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdQueueUpdate.CommandText = "INSERT INTO QUEUE (QueuePos, StudentID, FacultyID) VALUES ((SELECT MAX(QueuePos)+1 FROM QUEUE), " + StudentID + ", " + FacultyID + ")";
+
+
+            cmdQueueUpdate.Connection.Open();
+
+            cmdQueueUpdate.ExecuteNonQuery();
+
+            cmdQueueUpdate.Connection.Close();
+
+        }
+            }
     
 }
-   
-
