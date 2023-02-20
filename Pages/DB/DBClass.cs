@@ -356,7 +356,40 @@ namespace Meeting_Manager.Pages.DB
 
         }
 
+        public static void CreateStudentAccount(int StudentID, String Username, String Password)
+        {
+            SqlCommand cmdStudentCreate = new SqlCommand();
 
-            }
+            cmdStudentCreate.Connection = MeetingManagerDBConnection;
+            cmdStudentCreate.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdStudentCreate.CommandText = "INSERT INTO CREDENTIALS (Username, Password, StudentID) VALUES ('" + Username + "', '" + Password + "', " + StudentID + ")";
+
+            cmdStudentCreate.Connection.Open();
+
+            cmdStudentCreate.ExecuteNonQuery();
+
+            cmdStudentCreate.Connection.Close();
+
+        }
+
+        public static void CreateFacultyAccount(int FacultyID, String Username, String Password)
+        {
+            SqlCommand cmdFacultyCreate = new SqlCommand();
+
+            cmdFacultyCreate.Connection = MeetingManagerDBConnection;
+            cmdFacultyCreate.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdFacultyCreate.CommandText = "INSERT INTO CREDENTIALS (Username, Password, FacultyID) VALUES ('" + Username + "', '" + Password + "', " + FacultyID + ")";
+
+            cmdFacultyCreate.Connection.Open();
+
+            cmdFacultyCreate.ExecuteNonQuery();
+
+            cmdFacultyCreate.Connection.Close();
+
+        }
+
+
+
+    }
     
 }

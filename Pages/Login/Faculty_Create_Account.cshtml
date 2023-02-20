@@ -3,16 +3,19 @@
 @{
 }
 
-<div class="message" style="font-size: 36px; font-weight: bold; text-align: center;">Sign Up:>
-<div class="message" style="font-size: 36px; font-weight: ; text-align: center;">Please Fill Out the Fields Below:>
-</div>
+<div class="message" style="font-size: 36px; font-weight: bold; text-align: center;">Sign Up:
+<div class="message" style="font-size: 36px; font-weight: ; text-align: center;">Please Fill Out the Fields Below:
+</div> 
 </div>
 
-<form asp-page="Student_Create_Account">
+<form asp-page="Faculty_Create_Account">
     <input asp-for="Username" class="form-control" placeholder="Create Username" />
     <br />
     <label>Create Password:</label>
-    <input asp-for="Password" class="form-control" type="password" />
+    <input asp-for="Password" class="form-control" placeholder="Form Control" type="password" />
+    <br />
+    <label>Enter Your Faculty ID</label>
+    <input asp-for="FacultyID" class="form-control" placeholder="Faculty ID"/>
     <br />
     <input type="submit" class="btn btn-primary" />
 </form>
