@@ -21,7 +21,7 @@ namespace Meeting_Manager.Pages.Meeting
 
 
         //On Get method to take facultyID from the drop down and begin a signup sheet
-        public void OnGet(int MeetingID, int FacultyID)
+        public IActionResult OnGet(int MeetingID, int FacultyID)
         {
             //Grab the FacultyID from the drop down menu
             this.FacultyID = FacultyID;
@@ -38,7 +38,11 @@ namespace Meeting_Manager.Pages.Meeting
             }
             DBClass.MeetingManagerDBConnection.Close();
 
-
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToPage("/Login/DBLogin");
+            }
+            return Page();
 
         }
 

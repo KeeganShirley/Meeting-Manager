@@ -24,7 +24,7 @@ namespace Meeting_Manager.Pages.Profile
         }
 
         //Gets the faculty data and displays it
-        public void OnGet(int facultyID)
+        public IActionResult OnGet(int facultyID)
         {
             SqlDataReader singleFaculty = DBClass.facultyClassReader(facultyID);
 
@@ -55,6 +55,12 @@ namespace Meeting_Manager.Pages.Profile
                 { ClassID = classes["CLASSID"].ToString() });
             }
             DBClass.MeetingManagerDBConnection.Close();
+
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToPage("/Login/DBLogin");
+            }
+            return Page();
 
 
         }

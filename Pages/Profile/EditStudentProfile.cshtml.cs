@@ -17,7 +17,7 @@ namespace Meeting_Manager.Pages.Profile
         }
     
         //Gets the student data and displays it
-        public void OnGet(int studentID)
+        public IActionResult OnGet(int studentID)
         {
             SqlDataReader singleStudent = DBClass.SingleStudentReader(studentID);
         
@@ -32,6 +32,12 @@ namespace Meeting_Manager.Pages.Profile
                 studentToUpdate.GroupPartnerLastName = singleStudent["GroupPartnerLastName"].ToString();
                 studentToUpdate.GroupPartnerID = (int)singleStudent["GroupPartnerID"];
             }
+
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToPage("/Login/DBLogin");
+            }
+            return Page();
         }
 
         //Allows for edit of student data

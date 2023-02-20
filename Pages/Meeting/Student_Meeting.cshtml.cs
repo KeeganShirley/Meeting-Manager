@@ -3,6 +3,7 @@ using Meeting_Manager.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Meeting_Manager.Pages.Meeting
 {
@@ -19,7 +20,7 @@ namespace Meeting_Manager.Pages.Meeting
     }
 
     //Get the data for the dropdown menu and display it
-    public void OnGet()
+    public IActionResult OnGet()
     {
         SqlDataReader FacultyReader = DBClass.facultyReader();
 
@@ -34,6 +35,12 @@ namespace Meeting_Manager.Pages.Meeting
 
         }
         DBClass.MeetingManagerDBConnection.Close();
+
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToPage("/Login/DBLogin");
+            }
+            return Page();
     }
 
         public IActionResult OnPostSingleSelect(string meetingType)
