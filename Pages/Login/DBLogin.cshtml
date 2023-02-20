@@ -4,14 +4,14 @@
 }
 
 <div class="message" style="font-size: 36px; font-weight: bold; text-align: center;">Sign in: 
-<div class="message" style="font-size: 36px; font-weight: ; text-align: center;">Please Enter Your Credentials Below: 
+<div class="message" style="font-size: 36px; font-weight: ; text-align: center;">Enter Username: 
 <br />
 
 <form asp-page="DBLogin">
     <input asp-for="Username" class="form-control" placeholder="Enter Username" />
     <br />
     <label>Enter Password:</label>
-    <input asp-for="Password" class="form-control" type="password" />
+    <input asp-for="Password" class="form-control" placeholder="Enter Password" type="password" />
     <br />
     <input type="submit" class="btn btn-primary" />
 </form>

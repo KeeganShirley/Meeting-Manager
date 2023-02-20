@@ -287,6 +287,24 @@ namespace Meeting_Manager.Pages.DB
             int rowCount = (int)cmdLogin.ExecuteScalar();
             return rowCount;
         }
+
+        public static SqlDataReader UserType(string typeQuery)
+        {
+            SqlCommand cmdType = new SqlCommand();
+            cmdType.Connection = MeetingManagerDBConnection;
+            cmdType.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdType.CommandText = typeQuery;
+            cmdType.Connection.Open();
+
+            SqlDataReader tempReader = cmdType.ExecuteReader();
+            return tempReader;
+
+            cmdType.Connection.Close();
+
+        }
+
+
+
         public static int SecureLogin(string Username, string Password)
         {
             string loginQuery =
@@ -337,6 +355,8 @@ namespace Meeting_Manager.Pages.DB
             cmdQueueUpdate.Connection.Close();
 
         }
+
+
             }
     
 }
