@@ -12,6 +12,10 @@
     }
 }
 
+<form method="post" asp-page-handler="Logout">
+    <button type="submit" style="position: fixed; top: 10px; right: 10px;" class="btn btn-link">Logout</button>
+</form>
+
 <form asp-page="EditFacultyProfile">
     <input type="hidden" asp-for="@Model.facultyToUpdate.FacultyID" />
 

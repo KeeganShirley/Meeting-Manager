@@ -8,5 +8,11 @@ namespace Meeting_Manager.Pages.Meeting
         public void OnGet()
         {
         }
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToPage("/Index");
+        }
     }
 }

@@ -60,7 +60,11 @@ namespace Meeting_Manager.Pages.Meeting
             return RedirectToPage("Student_Meeting");
         }
 
-
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToPage("/Index");
+        }
 
 
     }

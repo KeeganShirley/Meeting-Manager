@@ -47,5 +47,11 @@ namespace Meeting_Manager.Pages.Profile
             return RedirectToPage("Student_Profile");
         }
 
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToPage("/Index");
+        }
+
     }
 }

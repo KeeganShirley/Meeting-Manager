@@ -8,5 +8,15 @@ namespace Meeting_Manager.Pages.Queue
         public void OnGet()
         {
         }
+
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToPage("/Index");
+        }
     }
+    
+
+
 }

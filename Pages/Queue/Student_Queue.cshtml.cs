@@ -36,5 +36,10 @@ namespace Meeting_Manager.Pages.Queue
 
             DBClass.MeetingManagerDBConnection.Close(); 
         }
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToPage("/Index");
+        }
     }
 }

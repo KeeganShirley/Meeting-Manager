@@ -49,10 +49,16 @@ namespace Meeting_Manager.Pages.Profile
             }
             return Page();
         }
-        
-        
-        
-        
+
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToPage("/Index");
         }
+
+
+
+
+    }
     }
 

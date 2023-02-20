@@ -62,9 +62,15 @@ namespace Meeting_Manager.Pages.Meeting
                 return (Page());
             }
 
+
         }
 
 
+        public IActionResult OnPostLogout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToPage("/Index");
+        }
     }
 
 }
