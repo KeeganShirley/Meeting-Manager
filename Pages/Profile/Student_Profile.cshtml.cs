@@ -10,7 +10,7 @@ namespace Meeting_Manager.Pages.Profile
     public class Student_ProfileModel : PageModel
     {
 
-
+    
 
         public List<StudentProfile> StudentList { get; set; }
 

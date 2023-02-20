@@ -50,6 +50,7 @@
                 @{
                     foreach (var studentprofile in Model.StudentList) // Display data
                     {
+                        if (studentprofile.StudentID == HttpContext.Session.GetInt32("studentID")) {
                     <tr>
                         <td>@studentprofile.StudentFName</td>
                         <td>@studentprofile.StudentLName</td>
@@ -62,7 +63,9 @@
                         <a asp-page="EditStudentProfile" class="btn btn-outline-primary" asp-route-studentid="@studentprofile.StudentID">Edit</a>
                         </td>
                     </tr>
-                }
+                } 
+                    }
+
 
                 }
 

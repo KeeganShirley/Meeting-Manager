@@ -13,6 +13,7 @@ namespace Meeting_Manager.Pages.Login
         [BindProperty]
         public string Password { get; set; }
 
+
         [BindProperty]
         public int StudentID { get; set; }
         [BindProperty]
@@ -58,7 +59,9 @@ namespace Meeting_Manager.Pages.Login
                     HttpContext.Session.SetString("username", Username);
                     ViewData["LoginMessage"] = "Login Successful!";
                     DBClass.MeetingManagerDBConnection.Close();
+                    HttpContext.Session.SetInt32("studentID", StudentID);
                     return RedirectToPage("/Profile/Student_Profile");
+
                 }
 
                 if (FacultyID != 0)
@@ -66,6 +69,7 @@ namespace Meeting_Manager.Pages.Login
                     HttpContext.Session.SetString("username", Username);
                     ViewData["LoginMessage"] = "Login Successful!";
                     DBClass.MeetingManagerDBConnection.Close();
+                    HttpContext.Session.SetInt32("facultyID", FacultyID);
                     return RedirectToPage("/Profile/Faculty_Profile");
                 }
 

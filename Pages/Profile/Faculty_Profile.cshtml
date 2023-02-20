@@ -54,27 +54,30 @@
                 @{
                     foreach (var FacultyProfile in Model.FacultyList)
                     {
-                
-                        <td>@FacultyProfile.FacultyFName</td>
-                        <td>@FacultyProfile.FacultyLName</td>
-                        <td>@FacultyProfile.FacultyEmail</td>
-                        <td>@FacultyProfile.OfficePhoneNum</td>
-                        <td>@FacultyProfile.OfficeLocation</td>
-                        <td>@FacultyProfile.Class1</td>
-                        <td>@FacultyProfile.Class2</td>
-                        <td>@FacultyProfile.Class3</td>
-                        <td>@FacultyProfile.Class4</td>
-                        <td>@FacultyProfile.Class5</td>
-                        <td>@FacultyProfile.Availability</td>
+                        if (FacultyProfile.FacultyID == HttpContext.Session.GetInt32("facultyID"))
+                        {
+
+                            <td>@FacultyProfile.FacultyFName</td>
+                            <td>@FacultyProfile.FacultyLName</td>
+                            <td>@FacultyProfile.FacultyEmail</td>
+                            <td>@FacultyProfile.OfficePhoneNum</td>
+                            <td>@FacultyProfile.OfficeLocation</td>
+                            <td>@FacultyProfile.Class1</td>
+                            <td>@FacultyProfile.Class2</td>
+                            <td>@FacultyProfile.Class3</td>
+                            <td>@FacultyProfile.Class4</td>
+                            <td>@FacultyProfile.Class5</td>
+                            <td>@FacultyProfile.Availability</td>
 
                             //MoWe: 12:45pm-2:45pm <br /> TuThu: 9:00am-12:00pm</td>
-                <td>
-                            <a asp-page="EditFacultyProfile" class="btn btn-outline-primary" asp-route-facultyid="@FacultyProfile.FacultyID">Edit</a>
-                </td>
+                            <td>
+                                <a asp-page="EditFacultyProfile" class="btn btn-outline-primary" asp-route-facultyid="@FacultyProfile.FacultyID">Edit</a>
+                            </td>
 
-                <td>
-                
-                </td>
+                            <td>
+
+                            </td>
+                        }
                     }
                 }
                 
