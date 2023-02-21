@@ -10,6 +10,7 @@ namespace Meeting_Manager.Pages.Meeting
     {
         public int FacultyID { get; set; }
 
+
         [BindProperty]
         public MeetingProfile MeetingUpdate { get; set; }
 
