@@ -97,9 +97,9 @@
     <label>Meeting Date:</label>
     <input type="text" asp-for="@Model.MeetingUpdate.MeetingDate" />
         <button type="button" class="btn btn-primary" onclick="document.getElementById('MeetingUpdate_MeetingDate').value = '1/1'">Populate</button>
-    <br />
+@*    <br />
     <label>FacultyID: </label>
-    <input type="text" asp-for="FacultyID" readonly="readonly"/>
+    <input type="text" asp-for="FacultyID" readonly="readonly"/>*@
 
     <br />
     <label>StudentID</label>
@@ -108,7 +108,7 @@
     
    
     <br /><br />
-    <input type="submit" class="btn btn-success" asp-page="OfficeHour_SignUp" />
+    <input type="submit" class="btn btn-success" asp-page="Meeting_SignUp" />
     <a asp-page="Index" class="btn btn-secondary">Cancel</a>
 </form>
 
