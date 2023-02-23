@@ -13,7 +13,7 @@ namespace Meeting_Manager.Pages.DB
         public static SqlConnection MeetingManagerDBConnection = new SqlConnection();
 
         // Connection String
-        private static readonly String? MeetingManagerDBConnString = "Server=Localhost;Database=Lab2;Trusted_Connection=True";
+        private static readonly String? MeetingManagerDBConnString = "Server=Localhost;Database=Lab3;Trusted_Connection=True";
 
         public static object? MeetingManagerDBConection { get; internal set; }
 
@@ -388,8 +388,68 @@ namespace Meeting_Manager.Pages.DB
 
         }
 
+        // For Hashed Passwords
+
+        private static readonly String? AuthConnString = "Server=Localhost;Database=AUTH;Trusted_Connection=True";
+        
+
+        public static bool HashedParameterLogin(string Username, string Password)
+        {
+            string loginQuery =
+                "SELECT Password FROM Username WHERE Username = @Username";
+
+            SqlCommand cmdLogin = new SqlCommand();
+            cmdLogin.Connection = MeetingManagerDBConnection;
+            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
+
+            cmdLogin.CommandText = loginQuery;
+            cmdLogin.Parameters.AddWithValue("@Username", Username);
+
+            cmdLogin.Connection.Open();
+
+            // ExecuteScalar() returns back data type Object
+            // Use a typecast to convert this to an int.
+            // Method returns first column of first row.
+            SqlDataReader hashReader = cmdLogin.ExecuteReader();
+            if (hashReader.Read())
+            {
+                string correctHash = hashReader["Password"].ToString();
+
+                if (PasswordHash.ValidatePassword(Password, correctHash))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+
+
+        public static void CreateHashedUser(string Username, string Password)
+        {
+            string loginQuery =
+                "INSERT INTO Username (Username,Password) values (@Username, @Password)";
+
+            SqlCommand cmdLogin = new SqlCommand();
+            cmdLogin.Connection = MeetingManagerDBConnection;
+            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
+
+            cmdLogin.CommandText = loginQuery;
+            cmdLogin.Parameters.AddWithValue("@Username", Username);
+            cmdLogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(Password));
+
+            cmdLogin.Connection.Open();
+
+            // ExecuteScalar() returns back data type Object
+            // Use a typecast to convert this to an int.
+            // Method returns first column of first row.
+            cmdLogin.ExecuteNonQuery();
+
+        }
 
 
     }
-    
+
 }

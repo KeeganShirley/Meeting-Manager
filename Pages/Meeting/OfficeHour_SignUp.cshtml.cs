@@ -45,7 +45,7 @@ namespace Meeting_Manager.Pages.Meeting
 
             if (HttpContext.Session.GetString("username") == null)
             {
-                return RedirectToPage("/Login/DBLogin");
+                return RedirectToPage("/Login/HashedLogin");
             }
             return Page();
 
