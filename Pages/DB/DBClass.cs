@@ -65,7 +65,7 @@ namespace Meeting_Manager.Pages.DB
             SqlCommand cmdMeetingRead = new SqlCommand();
             cmdMeetingRead.Connection = MeetingManagerDBConnection;
             cmdMeetingRead.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdMeetingRead.CommandText = "SELECT * FROM MEETING";
+            cmdMeetingRead.CommandText = "SELECT * FROM MEETING, STUDENT";
 
             cmdMeetingRead.Connection.Open();
 

@@ -29,3 +29,19 @@
         <a href="/Meeting/CreateOfficeHours">Set Office Hour Dates</a>
     </button>
 </form>
+</br>
+<div class="meeting-box">
+  <h2>My Meetings</h2>
+  <ul>
+        @{
+            foreach (var meetingProfile in Model.MeetingList)
+            {
+                if (meetingProfile.FacultyID == HttpContext.Session.GetInt32("facultyID"))
+                {
+                    <li>@meetingProfile.StudentFName @meetingProfile.StudentLName</li>
+
+                }
+            }
+      }
+  </ul>
+</div>

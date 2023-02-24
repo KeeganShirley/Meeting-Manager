@@ -8,6 +8,7 @@ namespace Meeting_Manager.Pages.Meeting
 {
     public class Meeting_SignUpModel : PageModel
     {
+        [BindProperty]
         public int FacultyID { get; set; }
 
 
@@ -34,6 +35,7 @@ namespace Meeting_Manager.Pages.Meeting
                 MeetingUpdate.MeetingID = MeetingID;
                 MeetingUpdate.MeetingTime = singleMeeting["MeetingTime"].ToString();
                 MeetingUpdate.MeetingDate = singleMeeting["MeetingDate"].ToString();
+                MeetingUpdate.FacultyID = this.FacultyID;
                 MeetingUpdate.StudentID = (int)singleMeeting["StudentID"];
 
             }
@@ -48,18 +50,13 @@ namespace Meeting_Manager.Pages.Meeting
         }
 
         //Once the signup page is filled out and the "submit" button has been pressed then this will redirect the student to the Student Meeting page
-        public IActionResult OnPost(int FacultyID)
+        public IActionResult OnPost()
         {
-            //Same functionality as this expression up above
-            this.FacultyID = FacultyID;
-
-            //This will actually send the data into the DB
-            DBClass.UpdateMeeting(MeetingUpdate, FacultyID);
-
+            DBClass.UpdateMeeting(MeetingUpdate, this.FacultyID);
             DBClass.MeetingManagerDBConnection.Close();
-
             return RedirectToPage("Student_Meeting");
         }
+
 
         public IActionResult OnPostLogout()
         {

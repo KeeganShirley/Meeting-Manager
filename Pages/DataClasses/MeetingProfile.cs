@@ -7,5 +7,9 @@
         public String? MeetingDate { get; set; }
         public int FacultyID { get; set; }
         public int StudentID { get; set; }
+
+        public String? StudentFName { get; set; }
+        public String? StudentLName { get; set; }   
+
     }
 }
