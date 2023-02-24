@@ -1,5 +1,5 @@
 ﻿@page
-@model Meeting_Manager.Pages.Login.DBLoginModel
+@model Meeting_Manager.Pages.Login.HashedLoginModel
 @{
 }
 
@@ -7,7 +7,7 @@
 <div class="message" style="font-size: 36px; font-weight: ; text-align: center;">Enter Username: 
 <br />
 
-<form asp-page="DBLogin">
+<form asp-page="HashedLogin">
     <input asp-for="Username" class="form-control" placeholder="Enter Username" />
     <br />
     <label>Enter Password:</label>

@@ -24,7 +24,7 @@ namespace Meeting_Manager.Pages.Login
 		{
             DBClass.CreateStudentAccount(StudentID, Username, Password);
 
-            return RedirectToPage("DBLogin");
+            return RedirectToPage("HashedLogin");
         }
 
 		
