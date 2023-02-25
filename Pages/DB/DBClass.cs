@@ -91,25 +91,22 @@ namespace Meeting_Manager.Pages.DB
         //This is used to update student information within the STUDENT Table
         public static void UpdateStudent(StudentProfile s)
         {
-            
-                string sqlQuery = "UPDATE Student SET ";
-                sqlQuery += "StudentID='" + s.StudentID + "',";
-                sqlQuery += "StudentFName='" + s.StudentFName + "',";
-                sqlQuery += "StudentLName='" + s.StudentLName + "',";
-                sqlQuery += "StuEmail='" + s.StuEmail + "',";
-                sqlQuery += "StuPhoneNum='" + s.StuPhoneNum + "',";
-                sqlQuery += "GroupPartnerFirstName='" + s.GroupPartnerFirstName + "',";
-                sqlQuery += "GroupPartnerLastName='" + s.GroupPartnerLastName + "',";
-                sqlQuery += "GroupPartnerID=" + s.GroupPartnerID + " WHERE StudentID =" + s.StudentID;
-
 
             SqlCommand cmdupdatestudentRead = new SqlCommand();
             cmdupdatestudentRead.Connection = new SqlConnection();
             cmdupdatestudentRead.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdupdatestudentRead.CommandText = sqlQuery;
+            cmdupdatestudentRead.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdupdatestudentRead.Parameters.AddWithValue("@StudentID", s.StudentID);
+            cmdupdatestudentRead.Parameters.AddWithValue("@StudentFName", s.StudentFName);
+            cmdupdatestudentRead.Parameters.AddWithValue("@StudentLName", s.StudentLName);
+            cmdupdatestudentRead.Parameters.AddWithValue("@StuEmail", s.StuEmail);
+            cmdupdatestudentRead.Parameters.AddWithValue("@StuPHoneNum", s.StuPhoneNum);
+            cmdupdatestudentRead.Parameters.AddWithValue("@GroupPartnerFirstName", s.GroupPartnerFirstName);
+            cmdupdatestudentRead.Parameters.AddWithValue("@GroupPartnerLastName", s.GroupPartnerLastName);
+            cmdupdatestudentRead.Parameters.AddWithValue("@GroupPartnerID", s.GroupPartnerID);
+            cmdupdatestudentRead.CommandText = "sp_updatestudent";
             cmdupdatestudentRead.Connection.Open();
-            cmdupdatestudentRead.ExecuteNonQuery();
-            
+            cmdupdatestudentRead.ExecuteScalar();
 
         }
 
@@ -129,25 +126,27 @@ namespace Meeting_Manager.Pages.DB
         //This is used to update faculty information within the FACULTY Table
         public static void UpdateFaculty(FacultyProfile f)
         {
-            string sqlQuery = "UPDATE FACULTY SET ";
-            sqlQuery += "FacultyFName = '" + f.FacultyFName + "', ";
-            sqlQuery += "FacultyLName = '" + f.FacultyLName + "', ";
-            sqlQuery += "FacultyEmail = '" + f.FacultyEmail + "', ";
-            sqlQuery += "OfficePhoneNum = '" + f.OfficePhoneNum + "', ";
-            sqlQuery += "OfficeLoc = '" + f.OfficeLocation + "', ";
-            sqlQuery += "Availability = '" + f.Availability + "', ";
-            sqlQuery += "Class1 = '" + f.Class1 + "', ";
-            sqlQuery += "Class2 = '" + f.Class2 + "', ";
-            sqlQuery += "Class3 = '" + f.Class3 + "', ";
-            sqlQuery += "Class4 = '" + f.Class4 + "', ";
-            sqlQuery += "Class5 = '" + f.Class5 + "' WHERE FacultyID = " + f.FacultyID;
+
 
             SqlCommand cmdupdatefacultyRead = new SqlCommand();
             cmdupdatefacultyRead.Connection = new SqlConnection();
             cmdupdatefacultyRead.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdupdatefacultyRead.CommandText = sqlQuery;
+            cmdupdatefacultyRead.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdupdatefacultyRead.Parameters.AddWithValue("@FacultyID", f.FacultyID);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@FacultyFName", f.FacultyFName);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@FacultyLName", f.FacultyLName);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@FacultyEmail", f.FacultyEmail);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@OfficePhoneNum", f.OfficePhoneNum);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@OfficeLoc", f.OfficeLocation);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@Availability", f.Availability);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@Class1", f.Class1);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@Class2", f.Class2);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@Class3", f.Class3);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@Class4", f.Class4);
+            cmdupdatefacultyRead.Parameters.AddWithValue("@Class5", f.Class5);
+            cmdupdatefacultyRead.CommandText = "sp_updatefaculty";
             cmdupdatefacultyRead.Connection.Open();
-            cmdupdatefacultyRead.ExecuteNonQuery();
+            cmdupdatefacultyRead.ExecuteScalar();
 
 
         }
@@ -255,21 +254,18 @@ namespace Meeting_Manager.Pages.DB
             m.MeetingID = currentMaxMeetingID + 1;
 
             // Insert the data from the SignUp sheet into the Meeting table
-            string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
-            sqlQuery += "'" + m.MeetingID + "', ";
-            sqlQuery += "'" + m.MeetingTime + "', ";
-            sqlQuery += "'" + m.MeetingDate + "', ";
-            sqlQuery += facultyID + ", ";
-            sqlQuery += m.StudentID + ");";
-
-            SqlCommand cmdUpdateMeeting = new SqlCommand();
-            cmdUpdateMeeting.Connection = MeetingManagerDBConnection;
-            cmdUpdateMeeting.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdUpdateMeeting.CommandText = sqlQuery;
-
-            cmdUpdateMeeting.Connection.Open();
-            cmdUpdateMeeting.ExecuteNonQuery();
-            cmdUpdateMeeting.Connection.Close();
+            SqlCommand cmdupdatemeeting = new SqlCommand();
+            cmdupdatemeeting.Connection = new SqlConnection();
+            cmdupdatemeeting.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdupdatemeeting.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdupdatemeeting.Parameters.AddWithValue("@MeetingID", m.MeetingID);
+            cmdupdatemeeting.Parameters.AddWithValue("@MeetingTime", m.MeetingTime);
+            cmdupdatemeeting.Parameters.AddWithValue("@MeetingDate", m.MeetingDate);
+            cmdupdatemeeting.Parameters.AddWithValue("@facultyID", m.FacultyID);
+            cmdupdatemeeting.Parameters.AddWithValue("@studentid", m.StudentID);
+            cmdupdatemeeting.CommandText = "sp_createmeeting";
+            cmdupdatemeeting.Connection.Open();
+            cmdupdatemeeting.ExecuteScalar();
         }
 
             public static int LoginQuery(string loginQuery)

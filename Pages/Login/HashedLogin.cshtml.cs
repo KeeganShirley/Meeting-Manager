@@ -2,6 +2,7 @@
 using Meeting_Manager.Pages.DataClasses;
 using Meeting_Manager.Pages.DB;
 using Meeting_Manager.Pages.Profile;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -14,6 +15,10 @@ namespace Meeting_Manager.Pages.Login
         [BindProperty]
         public string Password { get; set; }
 
+        [BindProperty]
+        public int StudentID { get; set; }
+
+
         public void OnGet()
         {
         }
@@ -22,6 +27,7 @@ namespace Meeting_Manager.Pages.Login
         {
             if (DBClass.HashedParameterLogin(Username, Password))
             {
+                HttpContext.Session.SetInt32("studentID", StudentID);
                 HttpContext.Session.SetString("username", Username);
                 ViewData["LoginMessage"] = "Login Successful!";
                 DBClass.MeetingManagerDBConnection.Close();
