@@ -339,16 +339,15 @@ namespace Meeting_Manager.Pages.DB
         {
             SqlCommand cmdQueueUpdate = new SqlCommand();
 
+            cmdQueueUpdate.Connection = new SqlConnection();
             cmdQueueUpdate.Connection = MeetingManagerDBConnection;
             cmdQueueUpdate.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdQueueUpdate.CommandText = "INSERT INTO QUEUE (QueuePos, StudentID, FacultyID) VALUES ((SELECT MAX(QueuePos)+1 FROM QUEUE), " + StudentID + ", " + FacultyID + ")";
-
-
+            cmdQueueUpdate.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdQueueUpdate.Parameters.AddWithValue("@StudentID", StudentID);
+            cmdQueueUpdate.Parameters.AddWithValue("@StudentID", FacultyID);
+            cmdQueueUpdate.CommandText = "sp_joinQueue";
             cmdQueueUpdate.Connection.Open();
-
-            cmdQueueUpdate.ExecuteNonQuery();
-
-            cmdQueueUpdate.Connection.Close();
+            cmdQueueUpdate.ExecuteScalar();
 
         }
 
@@ -391,32 +390,18 @@ namespace Meeting_Manager.Pages.DB
 
         public static bool HashedParameterLogin(string Username, string Password)
         {
-            string loginQuery =
-                "SELECT Password FROM Username WHERE Username = @Username";
-
-            SqlCommand cmdLogin = new SqlCommand();
-            cmdLogin.Connection = MeetingManagerDBConnection;
-            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
-
-            cmdLogin.CommandText = loginQuery;
-            cmdLogin.Parameters.AddWithValue("@Username", Username);
-
-            cmdLogin.Connection.Open();
-
-            // ExecuteScalar() returns back data type Object
-            // Use a typecast to convert this to an int.
-            // Method returns first column of first row.
-            SqlDataReader hashReader = cmdLogin.ExecuteReader();
-            if (hashReader.Read())
+            SqlCommand cmdlogin = new SqlCommand();
+            cmdlogin.Connection = new SqlConnection();
+            cmdlogin.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdlogin.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdlogin.Parameters.AddWithValue("@Username", Username);
+            cmdlogin.Parameters.AddWithValue("@Password", Password);
+            cmdlogin.CommandText = "login";
+            cmdlogin.Connection.Open();
+            if (((int)cmdlogin.ExecuteScalar()) > 0)
             {
-                string correctHash = hashReader["Password"].ToString();
-
-                if (PasswordHash.ValidatePassword(Password, correctHash))
-                {
-                    return true;
-                }
+                return true;
             }
-
             return false;
         }
 
@@ -425,23 +410,21 @@ namespace Meeting_Manager.Pages.DB
 
         public static void CreateHashedUser(string Username, string Password)
         {
-            string loginQuery =
-                "INSERT INTO Username (Username,Password) values (@Username, @Password)";
 
-            SqlCommand cmdLogin = new SqlCommand();
-            cmdLogin.Connection = MeetingManagerDBConnection;
-            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
+            SqlCommand cmdcreateuser = new SqlCommand();
+            cmdcreateuser.Connection = MeetingManagerDBConnection;
+            cmdcreateuser.Connection.ConnectionString = MeetingManagerDBConnString;
 
-            cmdLogin.CommandText = loginQuery;
-            cmdLogin.Parameters.AddWithValue("@Username", Username);
-            cmdLogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(Password));
-
-            cmdLogin.Connection.Open();
+            cmdcreateuser.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdcreateuser.Parameters.AddWithValue("@Username", Username);
+            cmdcreateuser.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(Password));
+            cmdcreateuser.CommandText = "sp_createuser";
+            cmdcreateuser.Connection.Open();
 
             // ExecuteScalar() returns back data type Object
             // Use a typecast to convert this to an int.
             // Method returns first column of first row.
-            cmdLogin.ExecuteNonQuery();
+            cmdcreateuser.ExecuteScalar();
 
         }
 
