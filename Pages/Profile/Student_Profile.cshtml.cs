@@ -28,17 +28,31 @@ namespace Meeting_Manager.Pages.Profile
 
             while (studentReader.Read())
             {
+                int studentID, groupPartnerID;
+
+                if (!int.TryParse(studentReader["StudentID"]?.ToString(), out studentID))
+                {
+                    // Handle the error, e.g. log it or skip the student
+                    continue;
+                }
+
+                if (!int.TryParse(studentReader["GroupPartnerID"]?.ToString(), out groupPartnerID))
+                {
+                    // Handle the error, e.g. log it or set groupPartnerID to a default value
+                    groupPartnerID = -1;
+                }
+
                 StudentList.Add(new StudentProfile
                 {
-                StudentID = Int32.Parse(studentReader["StudentID"].ToString()),
-                StudentFName = studentReader["StudentFName"].ToString(),
-                StudentLName = studentReader["StudentLName"].ToString(),
-                StuEmail = studentReader["StuEmail"].ToString(),
-                StuPhoneNum = studentReader["StuPhoneNum"].ToString(),
-                GroupPartnerFirstName = studentReader["GroupPartnerFirstName"].ToString(),
-                GroupPartnerLastName = studentReader["GroupPartnerLastName"].ToString(),
-                GroupPartnerID = Int32.Parse(studentReader["GroupPartnerID"].ToString())
-            });            
+                    StudentID = studentID,
+                    StudentFName = studentReader["StudentFName"].ToString(),
+                    StudentLName = studentReader["StudentLName"].ToString(),
+                    StuEmail = studentReader["StuEmail"].ToString(),
+                    StuPhoneNum = studentReader["StuPhoneNum"].ToString(),
+                    GroupPartnerFirstName = studentReader["GroupPartnerFirstName"].ToString(),
+                    GroupPartnerLastName = studentReader["GroupPartnerLastName"].ToString(),
+                    GroupPartnerID = groupPartnerID
+                });
             }
 
             DBClass.MeetingManagerDBConnection.Close();
