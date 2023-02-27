@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Meeting_Manager.Pages.Login
 {
-    public class CreateHashedLoginModel : PageModel
+    public class CreateStudentHashedLoginModel : PageModel
     {
         [BindProperty]
         public string Username { get; set; }
@@ -21,7 +21,7 @@ namespace Meeting_Manager.Pages.Login
             // Perform Validation First on Form
             // then...
 
-            DBClass.CreateHashedUser(Username, Password);
+            DBClass.CreateStudentHashedUser(Username, Password);
             DBClass.MeetingManagerDBConnection.Close();
 
             // Perform actual logic to check if user was successfully

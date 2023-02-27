@@ -21,6 +21,7 @@ namespace Meeting_Manager.Pages.Queue
         public String? OfficeLoc { get; set; }
         public void OnGet()
         {
+            //int StudentID = HttpContext.Session.GetInt32("studentID");
             SqlDataReader queueReader = DBClass.QueueReader(1, 1);
 
             while (queueReader.Read())
