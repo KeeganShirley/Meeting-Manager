@@ -11,11 +11,13 @@ namespace Meeting_Manager.Pages.DB
     {
         // Connection at the Class Level
         public static SqlConnection MeetingManagerDBConnection = new SqlConnection();
+        public static SqlConnection AuthConnection = new SqlConnection();
 
         // Connection String
         private static readonly String? MeetingManagerDBConnString = "Server=Localhost;Database=Lab3;Trusted_Connection=True";
 
         public static object? MeetingManagerDBConection { get; internal set; }
+
 
         public static SqlDataReader Reader()
         {
@@ -437,14 +439,6 @@ namespace Meeting_Manager.Pages.DB
         }
 
 
-
-
-
-
-
-
-
-
         public static void CreateHashedUser(string Username, string Password)
         {
 
@@ -462,6 +456,20 @@ namespace Meeting_Manager.Pages.DB
             // Use a typecast to convert this to an int.
             // Method returns first column of first row.
             cmdcreateuser.ExecuteScalar();
+
+            SqlCommand cmdcreateauth = new SqlCommand();
+            cmdcreateauth.Connection = AuthConnection;
+            cmdcreateauth.Connection.ConnectionString = AuthConnString;
+
+            cmdcreateauth.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdcreateauth.Parameters.AddWithValue("@Username", Username);
+            cmdcreateauth.Parameters.AddWithValue("@Password", Password);
+            cmdcreateauth.CommandText = "sp_authlogin";
+            cmdcreateauth.Connection.Open();
+
+            cmdcreateauth.ExecuteScalar();
+
+
 
         }
 
