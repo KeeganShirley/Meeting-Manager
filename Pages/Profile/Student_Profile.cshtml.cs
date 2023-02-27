@@ -32,13 +32,13 @@ namespace Meeting_Manager.Pages.Profile
 
                 if (!int.TryParse(studentReader["StudentID"]?.ToString(), out studentID))
                 {
-                    // Handle the error, e.g. log it or skip the student
+                    // Skip student if error with studentID being null
                     continue;
                 }
 
                 if (!int.TryParse(studentReader["GroupPartnerID"]?.ToString(), out groupPartnerID))
                 {
-                    // Handle the error, e.g. log it or set groupPartnerID to a default value
+                    // log it or set groupPartnerID to a default value if error/studentID being null
                     groupPartnerID = -1;
                 }
 

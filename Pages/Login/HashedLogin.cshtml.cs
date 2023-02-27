@@ -17,6 +17,8 @@ namespace Meeting_Manager.Pages.Login
 
         [BindProperty]
         public int StudentID { get; set; }
+        [BindProperty]
+        public int FacultyID { get; set; }  
 
 
         public void OnGet()
@@ -28,14 +30,12 @@ namespace Meeting_Manager.Pages.Login
             if (DBClass.HashedParameterLogin(Username, Password))
             {
                 HttpContext.Session.SetInt32("studentID", StudentID);
+                HttpContext.Session.SetInt32("facultyID", FacultyID);
                 HttpContext.Session.SetString("username", Username);
                 ViewData["LoginMessage"] = "Login Successful!";
                 DBClass.MeetingManagerDBConnection.Close();
                 return RedirectToPage("/Profile/Student_Profile");
 
-
-
-              
        
             }
             else
