@@ -98,7 +98,6 @@
     <input type="text" asp-for="@Model.MeetingUpdate.MeetingDate" />
         <button type="button" class="btn btn-primary" onclick="document.getElementById('MeetingUpdate_MeetingDate').value = '1/1'">Populate</button>
     <br />
-    @*<label>FacultyID: </label>*@
     <input type="hidden" asp-for="FacultyID"/>
 
     <br />
@@ -111,9 +110,6 @@
     <input type="submit" class="btn btn-success" asp-page="Meeting_SignUp" />
     <a asp-page="Index" class="btn btn-secondary">Cancel</a>
 </form>
-@Model.FacultyID
-
-@Model.MeetingUpdate.FacultyID
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-﻿@page
+﻿@*@page
 @model Meeting_Manager.Pages.Meeting.Student_MeetingModel
 @{
 }
@@ -44,4 +44,71 @@
 
 </div>
 
+*@
 
+@page
+@model Meeting_Manager.Pages.Meeting.Student_MeetingModel
+@{
+}
+
+<form method="post" asp-page-handler="Logout">
+    <button type="submit" style="position: fixed; top: 10px; right: 10px;" class="btn btn-link">Logout</button>
+</form>
+
+<body>
+    <section>
+        <nav>
+            <h1 style="margin-left: 60px">Faculty Search</h1>
+            <form asp-page-handler="SingleSelect" method="post">
+                <input type="radio" name="meetingType" value="Meeting" style="margin-left: 60px" checked> Meeting
+                <input type="radio" name="meetingType" value="OfficeHour"> Office Hour
+                <br />
+                <input type="text" id="searchInput" onkeyup="searchFaculty()" placeholder="Search for a faculty member...">
+                <select id="facultySelect" class="form-select" name="FacultySearch" aria-label="Default select example" required>
+                    <option value="" disabled selected>Select a faculty member</option>
+                    @{
+                        foreach (var Faculty in Model.FacultyList)
+                        {
+                            <option value="@Faculty.FacultyFName @Faculty.FacultyLName @Faculty.FacultyID">@Faculty.FacultyFName @Faculty.FacultyLName</option>
+                        }
+                    }
+                </select>
+
+                <script>
+                    function searchFaculty() {
+                        var input, filter, select, option, i, txtValue;
+                        input = document.getElementById("searchInput");
+                        filter = input.value.toUpperCase();
+                        select = document.getElementById("facultySelect");
+                        option = select.getElementsByTagName("option");
+                        for (i = 0; i < option.length; i++) {
+                            txtValue = option[i].textContent || option[i].innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                option[i].style.display = "";
+                            } else {
+                                option[i].style.display = "none";
+                            }
+                        }
+                    }
+                </script>
+
+                <div class="invalid-feedback">
+                    Please select a Professor to meet with:
+                </div>
+                <br />
+                <button class="btn btn-primary" type="submit" style="margin-left: 60px">Search</button>
+            </form>
+        </nav>
+    </section>
+
+</body>
+
+<div style="width: 175px; height: 100%; position: fixed; left: 0; top: 0; overflow-y: scroll; background-color: #CD5C5C;">
+    <ul>
+        <li><button style="background-color: white;"><a href="/Meeting/Student_Meeting">My Meetings</a></button></li>
+        <li><button style="background-color: white;"><a href="/Profile/Student_Profile">My Profile</a></button></button></li>
+        <li><button style="background-color: white;"><a href="/Queue/Student_Queue">My Queue</a></button></button></li>
+
+    </ul>
+
+</div>
