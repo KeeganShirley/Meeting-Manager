@@ -74,7 +74,7 @@
 
     <label>Meeting Time:</label>
 
-        <select>
+        <select asp-for="@Model.MeetingUpdate.MeetingTime">
             <option value="">@Model.MeetingUpdate.MeetingTime</option> @*Options for meeting times*@
             <option value="8am">8am</option>
             <option value="9am">9am</option>

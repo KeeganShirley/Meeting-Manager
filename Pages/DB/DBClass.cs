@@ -468,9 +468,67 @@ namespace Meeting_Manager.Pages.DB
             cmdcreateauth.Connection.Open();
 
             cmdcreateauth.ExecuteScalar();
+        }
 
+        public static void CreateStudentHashedUser(string Username, string Password)
+        {
+            SqlCommand cmdcreateuser = new SqlCommand();
+            cmdcreateuser.Connection = MeetingManagerDBConnection;
+            cmdcreateuser.Connection.ConnectionString = MeetingManagerDBConnString;
 
+            cmdcreateuser.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdcreateuser.Parameters.AddWithValue("@Username", Username);
+            cmdcreateuser.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(Password));
+            cmdcreateuser.CommandText = "sp_createStudent";
+            cmdcreateuser.Connection.Open();
 
+            // ExecuteScalar() returns back data type Object
+            // Use a typecast to convert this to an int.
+            // Method returns first column of first row.
+            cmdcreateuser.ExecuteScalar();
+
+            SqlCommand cmdcreateauth = new SqlCommand();
+            cmdcreateauth.Connection = AuthConnection;
+            cmdcreateauth.Connection.ConnectionString = AuthConnString;
+
+            cmdcreateauth.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdcreateauth.Parameters.AddWithValue("@Username", Username);
+            cmdcreateauth.Parameters.AddWithValue("@Password", Password);
+            cmdcreateauth.CommandText = "sp_authlogin";
+            cmdcreateauth.Connection.Open();
+
+            cmdcreateauth.ExecuteScalar();
+        }
+
+        public static void CreateFacultyHashedUser(string Username, string Password)
+        {
+
+            SqlCommand cmdcreateuser = new SqlCommand();
+            cmdcreateuser.Connection = MeetingManagerDBConnection;
+            cmdcreateuser.Connection.ConnectionString = MeetingManagerDBConnString;
+
+            cmdcreateuser.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdcreateuser.Parameters.AddWithValue("@Username", Username);
+            cmdcreateuser.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(Password));
+            cmdcreateuser.CommandText = "sp_createFaculty";
+            cmdcreateuser.Connection.Open();
+
+            // ExecuteScalar() returns back data type Object
+            // Use a typecast to convert this to an int.
+            // Method returns first column of first row.
+            cmdcreateuser.ExecuteScalar();
+
+            SqlCommand cmdcreateauth = new SqlCommand();
+            cmdcreateauth.Connection = AuthConnection;
+            cmdcreateauth.Connection.ConnectionString = AuthConnString;
+
+            cmdcreateauth.CommandType = System.Data.CommandType.StoredProcedure;
+            cmdcreateauth.Parameters.AddWithValue("@Username", Username);
+            cmdcreateauth.Parameters.AddWithValue("@Password", Password);
+            cmdcreateauth.CommandText = "sp_authlogin";
+            cmdcreateauth.Connection.Open();
+
+            cmdcreateauth.ExecuteScalar();
         }
 
 
