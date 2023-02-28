@@ -15,12 +15,12 @@ namespace Meeting_Manager.Pages.Profile
         {
             studentToUpdate = new StudentProfile();
         }
-    
+
         //Gets the student data and displays it
         public IActionResult OnGet(int studentID)
         {
             SqlDataReader singleStudent = DBClass.SingleStudentReader(studentID);
-        
+
             while (singleStudent.Read())
             {
                 studentToUpdate.StudentID = studentID;
@@ -30,15 +30,21 @@ namespace Meeting_Manager.Pages.Profile
                 studentToUpdate.StuPhoneNum = singleStudent["StuPhoneNum"].ToString();
                 studentToUpdate.GroupPartnerFirstName = singleStudent["GroupPartnerFirstName"].ToString();
                 studentToUpdate.GroupPartnerLastName = singleStudent["GroupPartnerLastName"].ToString();
-                studentToUpdate.GroupPartnerID = (int)singleStudent["GroupPartnerID"];
+
+                if (singleStudent["GroupPartnerID"] != DBNull.Value)
+                {
+                    studentToUpdate.GroupPartnerID = (int)singleStudent["GroupPartnerID"];
+                }
             }
 
             if (HttpContext.Session.GetString("username") == null)
             {
                 return RedirectToPage("/Login/HashedLogin");
             }
+
             return Page();
         }
+
 
         //Allows for edit of student data
         public IActionResult OnPost()
