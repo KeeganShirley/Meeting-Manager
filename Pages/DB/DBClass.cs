@@ -448,7 +448,7 @@ namespace Meeting_Manager.Pages.DB
             cmdLogin.Parameters.AddWithValue("@Username", Username);
             cmdLogin.Parameters.AddWithValue("@Password", Password);
 
-            cmdLogin.CommandText = "sp_login_4";
+            cmdLogin.CommandText = "sp_login_student";
             cmdLogin.Connection.Open();
 
             SqlDataReader hashReader = cmdLogin.ExecuteReader();
