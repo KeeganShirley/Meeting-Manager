@@ -25,6 +25,61 @@
     </ul>
 </div>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notifications Button</title>
+    <style>
+        .notification-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .notification-dropdown {
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+            .notification-dropdown p {
+                margin: 0;
+                padding: 5px 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="notification-button">Notifications</div>
+    <div class="notification-dropdown">
+        <p>Notification Message 1</p>
+        <p>Notification Message 2</p>
+        <p>Notification Message 3</p>
+    </div>
+    <script>
+        var notificationButton = document.querySelector('.notification-button');
+        var notificationDropdown = document.querySelector('.notification-dropdown');
+        notificationButton.addEventListener('click', function () {
+            if (notificationDropdown.style.display === 'none') {
+                notificationDropdown.style.display = 'block';
+            } else {
+                notificationDropdown.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
 
 
 @*//Chart for Faculty Profile Options*@
