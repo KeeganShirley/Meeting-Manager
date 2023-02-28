@@ -512,40 +512,32 @@ namespace Meeting_Manager.Pages.DB
             SqlDataReader hashReader = cmdLogin.ExecuteReader();
             if (hashReader.Read())
             {
-                if (hashReader["StudentID"] != null)
+                if (hashReader["StudentID"] != DBNull.Value)
                 {
+                    int.TryParse(hashReader["StudentID"].ToString(), out studentID);
                     string correctHash = hashReader["Password"].ToString();
-
                     if (PasswordHash.ValidatePassword(Password, correctHash))
                     {
-                        studentID = (int)hashReader["StudentID"];
                         facultyID = 0;
                         return true;
                     }
                 }
-                else
+                else if (hashReader["FacultyID"] != DBNull.Value)
                 {
+                    int.TryParse(hashReader["FacultyID"].ToString(), out facultyID);
                     string correctHash = hashReader["Password"].ToString();
-
                     if (PasswordHash.ValidatePassword(Password, correctHash))
                     {
-                        facultyID = (int)hashReader["FacultyID"];
                         studentID = 0;
                         return true;
                     }
                 }
             }
-            else
-            {
-                studentID = 0;
-                facultyID = 0;
-                return false;
-            }
             studentID = 0;
             facultyID = 0;
-            return true;
-
+            return false;
         }
+
 
 
         public static void CreateHashedUser(string Username, string Password)
