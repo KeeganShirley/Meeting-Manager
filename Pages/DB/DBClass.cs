@@ -346,7 +346,7 @@ namespace Meeting_Manager.Pages.DB
             cmdQueueUpdate.Connection.ConnectionString = MeetingManagerDBConnString;
             cmdQueueUpdate.CommandType = System.Data.CommandType.StoredProcedure;
             cmdQueueUpdate.Parameters.AddWithValue("@StudentID", StudentID);
-            cmdQueueUpdate.Parameters.AddWithValue("@StudentID", FacultyID);
+            cmdQueueUpdate.Parameters.AddWithValue("@FacultyID", FacultyID);
             cmdQueueUpdate.CommandText = "sp_joinQueue";
             cmdQueueUpdate.Connection.Open();
             cmdQueueUpdate.ExecuteScalar();
