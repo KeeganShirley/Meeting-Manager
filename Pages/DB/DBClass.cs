@@ -497,6 +497,57 @@ namespace Meeting_Manager.Pages.DB
         }
 
 
+        public static bool HashedParameterLogin(string Username, string Password, out int studentID, out int facultyID)
+        {
+            SqlCommand cmdLogin = new SqlCommand();
+            cmdLogin.Connection = new SqlConnection();
+            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdLogin.CommandType = System.Data.CommandType.StoredProcedure;
+
+            cmdLogin.Parameters.AddWithValue("@Username", Username);
+            cmdLogin.Parameters.AddWithValue("@Password", Password);
+
+            cmdLogin.CommandText = "sp_login_check";
+            cmdLogin.Connection.Open();
+            SqlDataReader hashReader = cmdLogin.ExecuteReader();
+            if (hashReader.Read())
+            {
+                if (hashReader["StudentID"] != null)
+                {
+                    string correctHash = hashReader["Password"].ToString();
+
+                    if (PasswordHash.ValidatePassword(Password, correctHash))
+                    {
+                        studentID = (int)hashReader["StudentID"];
+                        facultyID = 0;
+                        return true;
+                    }
+                }
+                else
+                {
+                    string correctHash = hashReader["Password"].ToString();
+
+                    if (PasswordHash.ValidatePassword(Password, correctHash))
+                    {
+                        facultyID = (int)hashReader["FacultyID"];
+                        studentID = 0;
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                studentID = 0;
+                facultyID = 0;
+                return false;
+            }
+            studentID = 0;
+            facultyID = 0;
+            return true;
+
+        }
+
+
         public static void CreateHashedUser(string Username, string Password)
         {
 

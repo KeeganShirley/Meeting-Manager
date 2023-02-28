@@ -80,26 +80,45 @@ namespace Meeting_Manager.Pages.Login
 
         public IActionResult OnPost()
         {
-            if (int.TryParse(HttpContext.Session.GetString("studentID"), out int studentID) && studentID != 0)
+            //if (int.TryParse(HttpContext.Session.GetString("studentID"), out int studentID) && studentID != 0)
+            //{
+            //    return RedirectToPage("/Profile/Student_Profile");
+            //}
+            if(DBClass.HashedParameterLogin(Username, Password, out int studentID, out int facultyID))
             {
-                return RedirectToPage("/Profile/Student_Profile");
-            }
-            else if (DBClass.HashedFacultyParameterLogin(Username, Password, out int facultyID))
-            {
+                if(studentID != 0)
+                {
+                    _httpContextAccessor.HttpContext.Session.SetInt32("studentID", studentID);
+                    _httpContextAccessor.HttpContext.Session.SetString("username", Username);
+                    ViewData["LoginMessage"] = "Login Successful!";
+                    DBClass.MeetingManagerDBConnection.Close();
+                    return RedirectToPage("/Profile/Student_Profile");
+                }
+                else { 
                 _httpContextAccessor.HttpContext.Session.SetInt32("facultyID", facultyID);
                 _httpContextAccessor.HttpContext.Session.SetString("username", Username);
                 ViewData["LoginMessage"] = "Login Successful!";
                 DBClass.MeetingManagerDBConnection.Close();
                 return RedirectToPage("/Profile/Faculty_Profile");
+                }
             }
-            else if (DBClass.HashedStudentParameterLogin(Username, Password, out studentID))
-            {
-                _httpContextAccessor.HttpContext.Session.SetInt32("studentID", studentID);
-                _httpContextAccessor.HttpContext.Session.SetString("username", Username);
-                ViewData["LoginMessage"] = "Login Successful!";
-                DBClass.MeetingManagerDBConnection.Close();
-                return RedirectToPage("/Profile/Student_Profile");
-            }
+
+            //else if (DBClass.HashedFacultyParameterLogin(Username, Password, out int facultyID))
+            //{
+            //    _httpContextAccessor.HttpContext.Session.SetInt32("facultyID", facultyID);
+            //    _httpContextAccessor.HttpContext.Session.SetString("username", Username);
+            //    ViewData["LoginMessage"] = "Login Successful!";
+            //    DBClass.MeetingManagerDBConnection.Close();
+            //    return RedirectToPage("/Profile/Faculty_Profile");
+            //}
+            //else if (DBClass.HashedStudentParameterLogin(Username, Password, out studentID))
+            //{
+            //    _httpContextAccessor.HttpContext.Session.SetInt32("studentID", studentID);
+            //    _httpContextAccessor.HttpContext.Session.SetString("username", Username);
+            //    ViewData["LoginMessage"] = "Login Successful!";
+            //    DBClass.MeetingManagerDBConnection.Close();
+            //    return RedirectToPage("/Profile/Student_Profile");
+            //}
             else
             {
                 ViewData["LoginMessage"] = "Username and/or Password Incorrect";
