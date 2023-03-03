@@ -306,7 +306,7 @@ namespace Meeting_Manager.Pages.DB
         public static int SecureLogin(string Username, string Password)
         {
             string loginQuery =
-            "SELECT COUNT(*) FROM Credentials where Username = @Username and Password = @Password";
+            "SELECT COUNT(*) FROM Username where Username = @Username and Password = @Password";
         SqlCommand cmdLogin = new SqlCommand();
             cmdLogin.Connection = MeetingManagerDBConnection;
             cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
@@ -359,7 +359,7 @@ namespace Meeting_Manager.Pages.DB
 
             cmdStudentCreate.Connection = MeetingManagerDBConnection;
             cmdStudentCreate.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdStudentCreate.CommandText = "INSERT INTO CREDENTIALS (Username, Password, StudentID) VALUES ('" + Username + "', '" + Password + "', " + StudentID + ")";
+            cmdStudentCreate.CommandText = "INSERT INTO Username (Username, Password, StudentID) VALUES ('" + Username + "', '" + Password + "', " + StudentID + ")";
 
             cmdStudentCreate.Connection.Open();
 
@@ -375,7 +375,7 @@ namespace Meeting_Manager.Pages.DB
 
             cmdFacultyCreate.Connection = MeetingManagerDBConnection;
             cmdFacultyCreate.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdFacultyCreate.CommandText = "INSERT INTO CREDENTIALS (Username, Password, FacultyID) VALUES ('" + Username + "', '" + Password + "', " + FacultyID + ")";
+            cmdFacultyCreate.CommandText = "INSERT INTO Username (Username, Password, FacultyID) VALUES ('" + Username + "', '" + Password + "', " + FacultyID + ")";
 
             cmdFacultyCreate.Connection.Open();
 
