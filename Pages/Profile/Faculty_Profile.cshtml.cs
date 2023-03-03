@@ -31,12 +31,7 @@ namespace Meeting_Manager.Pages.Profile
                     FacultyEmail = facultyReader["FacultyEmail"].ToString(),
                     OfficePhoneNum = facultyReader["OfficePhoneNum"].ToString(),
                     OfficeLocation = facultyReader["OfficeLoc"].ToString(),
-                    Availability = facultyReader["Availability"].ToString(),
-                    Class1 = facultyReader["Class1"].ToString(),
-                    Class2 = facultyReader["Class2"].ToString(),
-                    Class3 = facultyReader["Class3"].ToString(),
-                    Class4 = facultyReader["Class4"].ToString(),
-                    Class5 = facultyReader["Class5"].ToString()
+                    Availability = facultyReader["Availability"].ToString()
 
                 }) ;
 

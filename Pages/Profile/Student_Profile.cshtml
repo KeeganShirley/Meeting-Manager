@@ -106,21 +106,21 @@
                     foreach (var studentprofile in Model.StudentList) // Display data
                     {
                         if (studentprofile.StudentID == HttpContext.Session.GetInt32("studentID")) { // Get studentID as session variable
-                    <tr>
-                        <td>@studentprofile.StudentFName</td>
-                        <td>@studentprofile.StudentLName</td>
-                        <td>@studentprofile.StuEmail</td>
-                        <td>@studentprofile.StuPhoneNum</td>
-                        <td>@studentprofile.GroupPartnerFirstName</td>
-                        <td>@studentprofile.GroupPartnerLastName</td>
-                        <td>
+                            <tr>
+                                <td>@studentprofile.StudentFName</td>
+                                <td>@studentprofile.StudentLName</td>
+                                <td>@studentprofile.StuEmail</td>
+                                <td>@studentprofile.StuPhoneNum</td>
+                                <td>@studentprofile.GroupPartnerFirstName</td>
+                                <td>@studentprofile.GroupPartnerLastName</td>
+                                <td>
            
                         
-                        </td>
+                                </td>
                             
-                    </tr> 
-                    <a asp-page="EditStudentProfile" class="btn btn-outline-primary" asp-route-studentid="@studentprofile.StudentID">Edit</a>
-                } 
+                            </tr> 
+                            <a asp-page="EditStudentProfile" class="btn btn-outline-primary" asp-route-studentid="@studentprofile.StudentID">Edit</a>
+                        } 
                     }
 
 

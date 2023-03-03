@@ -141,11 +141,6 @@ namespace Meeting_Manager.Pages.DB
             cmdupdatefacultyRead.Parameters.AddWithValue("@OfficePhoneNum", f.OfficePhoneNum);
             cmdupdatefacultyRead.Parameters.AddWithValue("@OfficeLoc", f.OfficeLocation);
             cmdupdatefacultyRead.Parameters.AddWithValue("@Availability", f.Availability);
-            cmdupdatefacultyRead.Parameters.AddWithValue("@Class1", f.Class1);
-            cmdupdatefacultyRead.Parameters.AddWithValue("@Class2", f.Class2);
-            cmdupdatefacultyRead.Parameters.AddWithValue("@Class3", f.Class3);
-            cmdupdatefacultyRead.Parameters.AddWithValue("@Class4", f.Class4);
-            cmdupdatefacultyRead.Parameters.AddWithValue("@Class5", f.Class5);
             cmdupdatefacultyRead.CommandText = "sp_updatefaculty";
             cmdupdatefacultyRead.Connection.Open();
             cmdupdatefacultyRead.ExecuteScalar();
@@ -298,6 +293,82 @@ namespace Meeting_Manager.Pages.DB
         // For Hashed Passwords
 
         private static readonly String? AuthConnString = "Server=Localhost;Database=AUTH;Trusted_Connection=True";
+
+
+        //    // ExecuteScalar() returns back data type Object
+        //    // Use a typecast to convert this to an int.
+        //    // Method returns first column of first row.
+        //    SqlDataReader hashReader = cmdLogin.ExecuteReader();
+        //    if (hashReader.Read())
+        //    {
+        //        string correctHash = hashReader["Password"].ToString();
+
+        //        if (PasswordHash.ValidatePassword(Password, correctHash))
+        //        {
+        //            return true;
+        //        }
+        //    }
+
+        //    return false;
+        //}
+
+        public static bool HashedStudentParameterLogin(string Username, string Password, out int studentID)
+        {
+            SqlCommand cmdLogin = new SqlCommand();
+            cmdLogin.Connection = new SqlConnection();
+            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdLogin.CommandType = System.Data.CommandType.StoredProcedure;
+
+            cmdLogin.Parameters.AddWithValue("@Username", Username);
+            cmdLogin.Parameters.AddWithValue("@Password", Password);
+
+            cmdLogin.CommandText = "sp_login_student";
+            cmdLogin.Connection.Open();
+
+            SqlDataReader hashReader = cmdLogin.ExecuteReader();
+            if (hashReader.Read())
+            {
+                string correctHash = hashReader["Password"].ToString();
+
+                if (PasswordHash.ValidatePassword(Password, correctHash))
+                {
+                    studentID = (int)hashReader["StudentID"];
+                    return true;
+                }
+            }
+
+            studentID = 0;
+            return false;
+        }
+
+        public static bool HashedFacultyParameterLogin(string Username, string Password, out int facultyID)
+        {
+            SqlCommand cmdLogin = new SqlCommand();
+            cmdLogin.Connection = new SqlConnection();
+            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdLogin.CommandType = System.Data.CommandType.StoredProcedure;
+
+            cmdLogin.Parameters.AddWithValue("@Username", Username);
+            cmdLogin.Parameters.AddWithValue("@Password", Password);
+
+            cmdLogin.CommandText = "sp_login_faculty";
+            cmdLogin.Connection.Open();
+
+            SqlDataReader hashReader = cmdLogin.ExecuteReader();
+            if (hashReader.Read())
+            {
+                string correctHash = hashReader["Password"].ToString();
+
+                if (PasswordHash.ValidatePassword(Password, correctHash))
+                {
+                    facultyID = (int)hashReader["FacultyID"];
+                    return true;
+                }
+            }
+
+            facultyID = 0;
+            return false;
+        }
 
 
         public static bool HashedParameterLogin(string Username, string Password, out int studentID, out int facultyID)
