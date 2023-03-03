@@ -501,7 +501,9 @@ namespace Meeting_Manager.Pages.DB
         {
             SqlCommand cmdLogin = new SqlCommand();
             cmdLogin.Connection = new SqlConnection();
-            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
+           
+            cmdLogin.Connection = AuthConnection;
+            cmdLogin.Connection.ConnectionString = AuthConnString;
             cmdLogin.CommandType = System.Data.CommandType.StoredProcedure;
 
             cmdLogin.Parameters.AddWithValue("@Username", Username);
@@ -574,19 +576,25 @@ namespace Meeting_Manager.Pages.DB
         public static void CreateStudentHashedUser(string Username, string Password)
         {
             SqlCommand cmdcreateuser = new SqlCommand();
+
             cmdcreateuser.Connection = MeetingManagerDBConnection;
             cmdcreateuser.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdcreateuser.Connection = AuthConnection;
+            cmdcreateuser.Connection.ConnectionString = AuthConnString;
+            
+
 
             cmdcreateuser.CommandType = System.Data.CommandType.StoredProcedure;
             cmdcreateuser.Parameters.AddWithValue("@Username", Username);
             cmdcreateuser.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(Password));
-            cmdcreateuser.CommandText = "sp_createStudent";
+            cmdcreateuser.CommandText = "sp_createStudent1";
             cmdcreateuser.Connection.Open();
-
+            
             // ExecuteScalar() returns back data type Object
             // Use a typecast to convert this to an int.
             // Method returns first column of first row.
             cmdcreateuser.ExecuteScalar();
+            cmdcreateuser.Connection.Close();
 
             SqlCommand cmdcreateauth = new SqlCommand();
             cmdcreateauth.Connection = AuthConnection;
@@ -595,29 +603,32 @@ namespace Meeting_Manager.Pages.DB
             cmdcreateauth.CommandType = System.Data.CommandType.StoredProcedure;
             cmdcreateauth.Parameters.AddWithValue("@Username", Username);
             cmdcreateauth.Parameters.AddWithValue("@Password", Password);
-            cmdcreateauth.CommandText = "sp_authlogin";
+            cmdcreateauth.CommandText = "sp_authlogin1";
             cmdcreateauth.Connection.Open();
 
             cmdcreateauth.ExecuteScalar();
+            cmdcreateauth.Connection.Close();
         }
 
         public static void CreateFacultyHashedUser(string Username, string Password)
         {
 
             SqlCommand cmdcreateuser = new SqlCommand();
-            cmdcreateuser.Connection = MeetingManagerDBConnection;
-            cmdcreateuser.Connection.ConnectionString = MeetingManagerDBConnString;
+            cmdcreateuser.Connection = AuthConnection;
+            cmdcreateuser.Connection.ConnectionString = AuthConnString;
 
             cmdcreateuser.CommandType = System.Data.CommandType.StoredProcedure;
             cmdcreateuser.Parameters.AddWithValue("@Username", Username);
             cmdcreateuser.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(Password));
-            cmdcreateuser.CommandText = "sp_createFaculty";
+            cmdcreateuser.CommandText = "sp_createFaculty1";
             cmdcreateuser.Connection.Open();
 
             // ExecuteScalar() returns back data type Object
             // Use a typecast to convert this to an int.
             // Method returns first column of first row.
             cmdcreateuser.ExecuteScalar();
+            cmdcreateuser.Connection.Close();
+
 
             SqlCommand cmdcreateauth = new SqlCommand();
             cmdcreateauth.Connection = AuthConnection;
@@ -626,10 +637,12 @@ namespace Meeting_Manager.Pages.DB
             cmdcreateauth.CommandType = System.Data.CommandType.StoredProcedure;
             cmdcreateauth.Parameters.AddWithValue("@Username", Username);
             cmdcreateauth.Parameters.AddWithValue("@Password", Password);
-            cmdcreateauth.CommandText = "sp_authlogin";
+            cmdcreateauth.CommandText = "sp_authlogin1";
             cmdcreateauth.Connection.Open();
+            
 
             cmdcreateauth.ExecuteScalar();
+            cmdcreateauth.Connection.Close();
         }
 
 
