@@ -181,49 +181,7 @@ namespace Meeting_Manager.Pages.DB
             return tempReader;
         }
 
-        //This is used to update the meeting table with signup sheet information
-        //public static void UpdateMeeting(MeetingProfile m, int facultyID)
-        //{
 
-        //    int currentMaxMeetingID = 0;
-
-        //    // Get the highest MeetingID value in the DB
-        //    string sqlQueryCount = "SELECT MAX(MeetingID) FROM MEETING";
-        //    SqlCommand cmdGetMaxMeetingID = new SqlCommand(sqlQueryCount, MeetingManagerDBConnection);
-        //    cmdGetMaxMeetingID.Connection.Open();
-        //    SqlDataReader reader = cmdGetMaxMeetingID.ExecuteReader();
-
-        //    if (reader.Read())
-        //    {
-        //        currentMaxMeetingID = reader.GetInt32(0);
-        //    }
-
-        //    reader.Close();
-
-        //    cmdGetMaxMeetingID.Connection.Close();
-
-        //    // Increment the current highest MeetingID value by 1
-        //    m.MeetingID = currentMaxMeetingID + 1;
-
-        //    //Insert the data from the SignUp sheet into the Meeting table
-        //    string sqlQuery = "INSERT INTO MEETING (MeetingID, MeetingTime, MeetingDate, FacultyID, StudentID) VALUES (";
-        //    sqlQuery += "'" + m.MeetingID + "', ";
-        //    sqlQuery += "'" + m.MeetingTime + "', ";
-        //    sqlQuery += "'" + m.MeetingDate + "', ";
-        //    sqlQuery += facultyID + ", ";
-        //    sqlQuery += m.StudentID + ");";
-
-        //    SqlCommand cmdUpdateMeeting = new SqlCommand();
-        //    cmdUpdateMeeting.Connection = MeetingManagerDBConnection;
-        //    cmdUpdateMeeting.Connection.ConnectionString = MeetingManagerDBConnString;
-        //    cmdUpdateMeeting.CommandText = sqlQuery;
-
-        //    cmdUpdateMeeting.Connection.Open();
-
-        //    cmdUpdateMeeting.ExecuteNonQuery();
-
-
-        //}
 
         public static void UpdateMeeting(MeetingProfile m, int facultyID)
         {
@@ -303,24 +261,6 @@ namespace Meeting_Manager.Pages.DB
 
 
 
-        public static int SecureLogin(string Username, string Password)
-        {
-            string loginQuery =
-            "SELECT COUNT(*) FROM Username where Username = @Username and Password = @Password";
-        SqlCommand cmdLogin = new SqlCommand();
-            cmdLogin.Connection = MeetingManagerDBConnection;
-            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdLogin.CommandText = loginQuery;
-            cmdLogin.Parameters.AddWithValue("@Username", Username);
-            cmdLogin.Parameters.AddWithValue("@Password", Password);
-            cmdLogin.Connection.Open();
-            // ExecuteScalar() returns back data type Object
-            // Use a typecast to convert this to an int.
-            // Method returns first column of first row.
-            int rowCount = (int)cmdLogin.ExecuteScalar();
-            return rowCount;
-        }
-
 
         public static SqlDataReader QueueReader(int StudentID, int FacultyID)
         {
@@ -353,148 +293,11 @@ namespace Meeting_Manager.Pages.DB
 
         }
 
-        public static void CreateStudentAccount(int StudentID, String Username, String Password)
-        {
-            SqlCommand cmdStudentCreate = new SqlCommand();
-
-            cmdStudentCreate.Connection = MeetingManagerDBConnection;
-            cmdStudentCreate.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdStudentCreate.CommandText = "INSERT INTO Username (Username, Password, StudentID) VALUES ('" + Username + "', '" + Password + "', " + StudentID + ")";
-
-            cmdStudentCreate.Connection.Open();
-
-            cmdStudentCreate.ExecuteNonQuery();
-
-            cmdStudentCreate.Connection.Close();
-
-        }
-
-        public static void CreateFacultyAccount(int FacultyID, String Username, String Password)
-        {
-            SqlCommand cmdFacultyCreate = new SqlCommand();
-
-            cmdFacultyCreate.Connection = MeetingManagerDBConnection;
-            cmdFacultyCreate.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdFacultyCreate.CommandText = "INSERT INTO Username (Username, Password, FacultyID) VALUES ('" + Username + "', '" + Password + "', " + FacultyID + ")";
-
-            cmdFacultyCreate.Connection.Open();
-
-            cmdFacultyCreate.ExecuteNonQuery();
-
-            cmdFacultyCreate.Connection.Close();
-
-        }
+     
 
         // For Hashed Passwords
 
         private static readonly String? AuthConnString = "Server=Localhost;Database=AUTH;Trusted_Connection=True";
-
-
-        //public static bool HashedParameterLogin(string Username, string Password)
-        //{
-        //    SqlCommand cmdlogin = new SqlCommand();
-        //    cmdlogin.Connection = new SqlConnection();
-        //    cmdlogin.Connection.ConnectionString = MeetingManagerDBConnString;
-        //    cmdlogin.CommandType = System.Data.CommandType.StoredProcedure;
-        //    cmdlogin.Parameters.AddWithValue("@Username", Username);
-        //    cmdlogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(Password));
-        //    cmdlogin.CommandText = "login";
-        //    cmdlogin.Connection.Open();
-        //    if (((int)cmdlogin.ExecuteScalar()) > 0)
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
-
-        //public static bool HashedParameterLogin(string Username, string Password)
-        //{
-
-        //    SqlCommand cmdLogin = new SqlCommand();
-        //    cmdLogin.Connection = new SqlConnection();
-        //    cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
-        //    cmdLogin.CommandType = System.Data.CommandType.StoredProcedure;
-
-        //    cmdLogin.Parameters.AddWithValue("@Username", Username);
-        //    cmdLogin.Parameters.AddWithValue("@Password", Password);
-
-        //    cmdLogin.CommandText = "sp_login";
-        //    cmdLogin.Connection.Open();
-
-        //    // ExecuteScalar() returns back data type Object
-        //    // Use a typecast to convert this to an int.
-        //    // Method returns first column of first row.
-        //    SqlDataReader hashReader = cmdLogin.ExecuteReader();
-        //    if (hashReader.Read())
-        //    {
-        //        string correctHash = hashReader["Password"].ToString();
-
-        //        if (PasswordHash.ValidatePassword(Password, correctHash))
-        //        {
-        //            return true;
-        //        }
-        //    }
-
-        //    return false;
-        //}
-
-        public static bool HashedStudentParameterLogin(string Username, string Password, out int studentID)
-        {
-            SqlCommand cmdLogin = new SqlCommand();
-            cmdLogin.Connection = new SqlConnection();
-            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdLogin.CommandType = System.Data.CommandType.StoredProcedure;
-
-            cmdLogin.Parameters.AddWithValue("@Username", Username);
-            cmdLogin.Parameters.AddWithValue("@Password", Password);
-
-            cmdLogin.CommandText = "sp_login_student";
-            cmdLogin.Connection.Open();
-
-            SqlDataReader hashReader = cmdLogin.ExecuteReader();
-            if (hashReader.Read())
-            {
-                string correctHash = hashReader["Password"].ToString();
-
-                if (PasswordHash.ValidatePassword(Password, correctHash))
-                {
-                    studentID = (int)hashReader["StudentID"];
-                    return true;
-                }
-            }
-
-            studentID = 0;
-            return false;
-        }
-
-        public static bool HashedFacultyParameterLogin(string Username, string Password, out int facultyID)
-        {
-            SqlCommand cmdLogin = new SqlCommand();
-            cmdLogin.Connection = new SqlConnection();
-            cmdLogin.Connection.ConnectionString = MeetingManagerDBConnString;
-            cmdLogin.CommandType = System.Data.CommandType.StoredProcedure;
-
-            cmdLogin.Parameters.AddWithValue("@Username", Username);
-            cmdLogin.Parameters.AddWithValue("@Password", Password);
-
-            cmdLogin.CommandText = "sp_login_faculty";
-            cmdLogin.Connection.Open();
-
-            SqlDataReader hashReader = cmdLogin.ExecuteReader();
-            if (hashReader.Read())
-            {
-                string correctHash = hashReader["Password"].ToString();
-
-                if (PasswordHash.ValidatePassword(Password, correctHash))
-                {
-                    facultyID = (int)hashReader["FacultyID"];
-                    return true;
-                }
-            }
-
-            facultyID = 0;
-            return false;
-        }
 
 
         public static bool HashedParameterLogin(string Username, string Password, out int studentID, out int facultyID)
@@ -542,36 +345,7 @@ namespace Meeting_Manager.Pages.DB
 
 
 
-        public static void CreateHashedUser(string Username, string Password)
-        {
-
-            SqlCommand cmdcreateuser = new SqlCommand();
-            cmdcreateuser.Connection = MeetingManagerDBConnection;
-            cmdcreateuser.Connection.ConnectionString = MeetingManagerDBConnString;
-
-            cmdcreateuser.CommandType = System.Data.CommandType.StoredProcedure;
-            cmdcreateuser.Parameters.AddWithValue("@Username", Username);
-            cmdcreateuser.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(Password));
-            cmdcreateuser.CommandText = "sp_createuser";
-            cmdcreateuser.Connection.Open();
-
-            // ExecuteScalar() returns back data type Object
-            // Use a typecast to convert this to an int.
-            // Method returns first column of first row.
-            cmdcreateuser.ExecuteScalar();
-
-            SqlCommand cmdcreateauth = new SqlCommand();
-            cmdcreateauth.Connection = AuthConnection;
-            cmdcreateauth.Connection.ConnectionString = AuthConnString;
-
-            cmdcreateauth.CommandType = System.Data.CommandType.StoredProcedure;
-            cmdcreateauth.Parameters.AddWithValue("@Username", Username);
-            cmdcreateauth.Parameters.AddWithValue("@Password", Password);
-            cmdcreateauth.CommandText = "sp_authlogin";
-            cmdcreateauth.Connection.Open();
-
-            cmdcreateauth.ExecuteScalar();
-        }
+        
 
         public static void CreateStudentHashedUser(string Username, string Password)
         {
