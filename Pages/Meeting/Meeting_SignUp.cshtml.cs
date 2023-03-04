@@ -36,7 +36,6 @@ namespace Meeting_Manager.Pages.Meeting
                 MeetingUpdate.MeetingID = MeetingID;
                 MeetingUpdate.MeetingTime = singleMeeting["MeetingTime"].ToString();
                 MeetingUpdate.MeetingDate = singleMeeting["MeetingDate"].ToString();
-                //MeetingUpdate.FacultyID = this.FacultyID;
                 MeetingUpdate.StudentID = (int)singleMeeting["StudentID"];
 
             }
